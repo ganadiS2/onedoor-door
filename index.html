@@ -1,825 +1,150 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ================= TODAY ================= -->
 
-  <title>ONEDOOR :DOOR</title>
-  <meta
-    name="description"
-    content="ONEDOOR를 위한 작은 공간. ONEDOOR :DOOR"
-  >
+<section class="section today" id="today">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <div class="section-heading">
+    <div>
+      <p class="section-label">TODAY</p>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-  <!-- ================= HEADER ================= -->
-
-  <header class="header">
-    <div class="header-inner">
-
-      <button class="logo" onclick="showPage('home')" aria-label="홈으로">
-        <span class="logo-mark"></span>
-        <span>ONEDOOR</span>
-        <strong>:DOOR</strong>
-      </button>
-
-      <nav class="desktop-nav">
-        <button onclick="showPage('home')">HOME</button>
-        <button onclick="showPage('members')">MEMBERS</button>
-        <button onclick="showPage('song')">SONG</button>
-        <button onclick="showPage('quiz')">QUIZ</button>
-        <button onclick="showPage('archive')">ARCHIVE</button>
-        <button onclick="showPage('birthday')">BIRTHDAY</button>
-        <button onclick="showPage('mydoor')">MY DOOR</button>
-      </nav>
-
-      <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="메뉴 열기"
-        aria-expanded="false"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
+      <h2>
+        What's behind<br>
+        <span>the door?</span>
+      </h2>
     </div>
 
-    <!-- MOBILE MENU -->
+    <p class="section-note">
+      오늘의 작은 추천과<br>
+      새로운 문을 확인해보세요.
+    </p>
+  </div>
 
-    <nav class="mobile-nav" id="mobileNav">
-      <button onclick="showPage('home')">
+
+  <div class="today-grid">
+
+    <!-- TODAY'S SONG -->
+    <button
+      class="feature-card song-feature v3-card"
+      onclick="showPage('song')"
+    >
+      <div class="feature-top">
         <span>01</span>
-        HOME
-      </button>
+        <span>SONG</span>
+      </div>
 
-      <button onclick="showPage('members')">
+      <div class="feature-icon">♪</div>
+
+      <p class="feature-label">TODAY'S SONG</p>
+
+      <h3 id="homeSongTitle">오늘의 노래</h3>
+
+      <p
+        class="feature-description"
+        id="homeSongDescription"
+      >
+        오늘의 문을 열어볼까요?
+      </p>
+
+      <div class="today-card-footer">
+        <span>LISTEN</span>
+        <span class="feature-arrow">↗</span>
+      </div>
+    </button>
+
+
+    <!-- NEXT BIRTHDAY -->
+    <button
+      class="feature-card birthday-feature v3-card"
+      onclick="showPage('birthday')"
+    >
+      <div class="feature-top">
         <span>02</span>
-        MEMBERS
-      </button>
+        <span>COUNTDOWN</span>
+      </div>
 
-      <button onclick="showPage('song')">
+      <div class="feature-icon">○</div>
+
+      <p class="feature-label">NEXT BIRTHDAY</p>
+
+      <h3 id="homeBirthdayMember">Birthday</h3>
+
+      <p
+        class="feature-description"
+        id="homeBirthdayDate"
+      >
+        다음 생일을 기다리는 중
+      </p>
+
+      <div
+        class="mini-dday"
+        id="homeCountdown"
+      >
+        D-DAY
+      </div>
+
+      <div class="today-card-footer">
+        <span>COUNTDOWN</span>
+        <span class="feature-arrow">↗</span>
+      </div>
+    </button>
+
+
+    <!-- TODAY'S QUIZ -->
+    <button
+      class="feature-card quiz-feature v3-card"
+      onclick="showPage('quiz')"
+    >
+      <div class="feature-top">
         <span>03</span>
-        SONG
-      </button>
-
-      <button onclick="showPage('quiz')">
-        <span>04</span>
-        QUIZ
-      </button>
-
-      <button onclick="showPage('archive')">
-        <span>05</span>
-        ARCHIVE
-      </button>
-
-      <button onclick="showPage('birthday')">
-        <span>06</span>
-        BIRTHDAY
-      </button>
-
-      <button onclick="showPage('mydoor')">
-        <span>07</span>
-        MY DOOR
-      </button>
-    </nav>
-  </header>
-
-
-  <main>
-
-    <!-- ================= HOME ================= -->
-
-    <section class="page active" id="home">
-
-      <section class="hero">
-
-        <div class="hero-top">
-          <span>ONEDOOR'S PRIVATE SPACE</span>
-          <span>2026</span>
-        </div>
-
-        <div class="hero-content">
-
-          <p class="eyebrow">WELCOME, ONEDOOR</p>
-
-          <h1>
-            OPEN
-            <span>THE DOOR.</span>
-          </h1>
-
-          <p class="hero-copy">
-            원도어를 위한 작은 공간.<br>
-            오늘도 문을 열고 들어와요.
-          </p>
-
-          <button
-            class="primary-button"
-            onclick="scrollToToday()"
-          >
-            ENTER THE DOOR
-            <span>→</span>
-          </button>
-
-        </div>
-
-        <div class="hero-bottom">
-          <span>SCROLL TO EXPLORE</span>
-          <span class="scroll-line"></span>
-        </div>
-
-      </section>
-
-
-      <!-- TODAY -->
-
-      <section class="section today" id="today">
-
-        <div class="section-heading">
-          <div>
-            <p class="section-label">TODAY</p>
-
-            <h2>
-              What's behind<br>
-              <span>the door?</span>
-            </h2>
-          </div>
-
-          <p class="section-note">
-            오늘의 작은 추천을<br>
-            확인해보세요.
-          </p>
-        </div>
-
-
-        <div class="today-grid">
-
-          <!-- SONG -->
-
-          <button
-            class="feature-card song-feature"
-            onclick="showPage('song')"
-          >
-            <div class="feature-top">
-              <span>01</span>
-              <span>SONG</span>
-            </div>
-
-            <div class="feature-icon">♪</div>
-
-            <p class="feature-label">TODAY'S SONG</p>
-
-            <h3>오늘의 노래</h3>
-
-            <p class="feature-description">
-              오늘은 어떤 노래를<br>
-              들어볼까요?
-            </p>
-
-            <span class="feature-arrow">↗</span>
-          </button>
-
-
-          <!-- BIRTHDAY -->
-
-          <button
-            class="feature-card birthday-feature"
-            onclick="showPage('birthday')"
-          >
-            <div class="feature-top">
-              <span>02</span>
-              <span>COUNTDOWN</span>
-            </div>
-
-            <div class="feature-icon">○</div>
-
-            <p class="feature-label">BIRTHDAY</p>
-
-            <h3>Birthday</h3>
-
-            <p class="feature-description">
-              다음 생일까지<br>
-              얼마나 남았을까?
-            </p>
-
-            <div class="mini-dday" id="homeCountdown">
-              D-DAY
-            </div>
-
-            <span class="feature-arrow">↗</span>
-          </button>
-
-
-          <!-- QUIZ -->
-
-          <button
-            class="feature-card quiz-feature"
-            onclick="showPage('quiz')"
-          >
-            <div class="feature-top">
-              <span>03</span>
-              <span>TEST</span>
-            </div>
-
-            <div class="feature-icon">?</div>
-
-            <p class="feature-label">ONEDOOR TEST</p>
-
-            <h3>원도어 퀴즈</h3>
-
-            <p class="feature-description">
-              나의 원도어력을<br>
-              테스트해보자.
-            </p>
-
-            <span class="feature-arrow">↗</span>
-          </button>
-
-        </div>
-
-      </section>
-
-
-      <!-- DOOR MENU -->
-
-      <section class="section door-menu">
-
-        <div class="section-heading simple">
-          <div>
-            <p class="section-label">DOOR MENU</p>
-
-            <h2>
-              Choose your<br>
-              <span>door.</span>
-            </h2>
-          </div>
-        </div>
-
-
-        <div class="menu-grid">
-
-          <button class="menu-card" onclick="showPage('members')">
-            <span class="menu-number">01</span>
-
-            <div>
-              <strong>MEMBERS</strong>
-              <p>멤버들의 문</p>
-            </div>
-
-            <span class="menu-arrow">↗</span>
-          </button>
-
-
-          <button class="menu-card" onclick="showPage('song')">
-            <span class="menu-number">02</span>
-
-            <div>
-              <strong>SONG</strong>
-              <p>노래의 문</p>
-            </div>
-
-            <span class="menu-arrow">↗</span>
-          </button>
-
-
-          <button class="menu-card" onclick="showPage('archive')">
-            <span class="menu-number">03</span>
-
-            <div>
-              <strong>ARCHIVE</strong>
-              <p>기억의 문</p>
-            </div>
-
-            <span class="menu-arrow">↗</span>
-          </button>
-
-
-          <button class="menu-card" onclick="showPage('mydoor')">
-            <span class="menu-number">04</span>
-
-            <div>
-              <strong>MY DOOR</strong>
-              <p>나만의 문</p>
-            </div>
-
-            <span class="menu-arrow">↗</span>
-          </button>
-
-        </div>
-
-      </section>
-
-
-      <!-- HOME FOOTER MESSAGE -->
-
-      <section class="closing-section">
-
-        <p class="section-label">ONE MORE THING</p>
-
-        <h2>
-          The door is<br>
-          <span>always open.</span>
-        </h2>
-
-        <button
-          class="outline-button"
-          onclick="showPage('mydoor')"
-        >
-          OPEN MY DOOR →
-        </button>
-
-      </section>
-
-    </section>
-
-
-    <!-- ================= MEMBERS ================= -->
-
-    <section class="page" id="members">
-
-      <div class="page-hero">
-
-        <p class="section-label">02 / MEMBERS</p>
-
-        <h1>
-          Meet the<br>
-          <span>members.</span>
-        </h1>
-
-        <p>
-          여섯 개의 문, 여섯 가지 매력.<br>
-          내가 좋아하는 멤버의 문을 열어보세요.
-        </p>
-
+        <span>TEST</span>
       </div>
 
+      <div class="feature-icon">?</div>
 
-      <div class="members-grid">
+      <p class="feature-label">TODAY'S QUIZ</p>
 
-        <button
-          class="member-card"
-          onclick="selectMember('성호')"
-        >
-          <span class="member-number">01</span>
-          <span class="member-symbol">S</span>
-          <strong>성호</strong>
-          <small>SUNGHO</small>
-          <span class="member-birthday">09.04</span>
-        </button>
+      <h3>원도어 퀴즈</h3>
 
+      <p class="feature-description">
+        오늘의 문제에<br>
+        도전해보세요.
+      </p>
 
-        <button
-          class="member-card"
-          onclick="selectMember('리우')"
-        >
-          <span class="member-number">02</span>
-          <span class="member-symbol">R</span>
-          <strong>리우</strong>
-          <small>RIWOO</small>
-          <span class="member-birthday">10.22</span>
-        </button>
-
-
-        <button
-          class="member-card"
-          onclick="selectMember('재현')"
-        >
-          <span class="member-number">03</span>
-          <span class="member-symbol">M</span>
-          <strong>재현</strong>
-          <small>JAEHYUN</small>
-          <span class="member-birthday">12.04</span>
-        </button>
-
-
-        <button
-          class="member-card"
-          onclick="selectMember('태산')"
-        >
-          <span class="member-number">04</span>
-          <span class="member-symbol">T</span>
-          <strong>태산</strong>
-          <small>TAESAN</small>
-          <span class="member-birthday">08.10</span>
-        </button>
-
-
-        <button
-          class="member-card"
-          onclick="selectMember('이한')"
-        >
-          <span class="member-number">05</span>
-          <span class="member-symbol">L</span>
-          <strong>이한</strong>
-          <small>LEEHAN</small>
-          <span class="member-birthday">10.20</span>
-        </button>
-
-
-        <button
-          class="member-card"
-          onclick="selectMember('운학')"
-        >
-          <span class="member-number">06</span>
-          <span class="member-symbol">W</span>
-          <strong>운학</strong>
-          <small>WOONHAK</small>
-          <span class="member-birthday">11.29</span>
-        </button>
-
+      <div class="today-card-footer">
+        <span>START QUIZ</span>
+        <span class="feature-arrow">↗</span>
       </div>
+    </button>
 
+  </div>
 
-      <div class="member-hint">
-        <span>TIP</span>
-        멤버를 누르면 MY DOOR의 주인으로 저장돼요.
-      </div>
 
-    </section>
+  <!-- YOUR DOOR -->
 
+  <div class="your-door-card">
 
-    <!-- ================= SONG ================= -->
+    <div class="your-door-left">
 
-    <section class="page" id="song">
+      <p class="section-label">YOUR DOOR</p>
 
-      <div class="page-hero centered">
+      <h3 id="homeSelectedMember">
+        아직 당신의 DOOR가 없어요.
+      </h3>
 
-        <p class="section-label">03 / SONG</p>
-
-        <h1>
-          Today's<br>
-          <span>song.</span>
-        </h1>
-
-        <p>
-          오늘의 기분에 맞는 노래를<br>
-          랜덤으로 골라볼까요?
-        </p>
-
-      </div>
-
-
-      <div class="song-box">
-
-        <div class="song-decoration">
-          <span>♫</span>
-          <span>ONEDOOR :DOOR</span>
-        </div>
-
-        <p class="song-label">YOUR SONG FOR TODAY</p>
-
-        <h2 id="songTitle">One and Only</h2>
-
-        <p id="songDescription">
-          오늘의 문을 여는 첫 번째 노래.
-        </p>
-
-        <div class="song-meta">
-          <span id="songNumber">01 / 08</span>
-          <span>BOYNEXTDOOR</span>
-        </div>
-
-        <button
-          class="primary-button"
-          onclick="pickSong()"
-        >
-          PICK ANOTHER
-          <span>↻</span>
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= QUIZ ================= -->
-
-    <section class="page" id="quiz">
-
-      <div class="page-hero">
-
-        <p class="section-label">04 / QUIZ</p>
-
-        <h1>
-          How much<br>
-          <span>do you know?</span>
-        </h1>
-
-        <p>
-          간단한 원도어 퀴즈에 도전해보세요.
-        </p>
-
-      </div>
-
-
-      <div class="quiz-box">
-
-        <div class="quiz-progress">
-          <span id="quizProgress">QUESTION 01 / 05</span>
-
-          <div class="progress-bar">
-            <span id="progressFill"></span>
-          </div>
-        </div>
-
-
-        <div id="quizContent">
-
-          <p class="quiz-category">ONEDOOR TEST</p>
-
-          <h2 id="quizQuestion">
-            BOYNEXTDOOR의 공식 팬덤명은?
-          </h2>
-
-          <div id="quizAnswers" class="quiz-answers"></div>
-
-        </div>
-
-
-        <div id="quizResult" class="quiz-result hidden">
-
-          <p class="section-label">RESULT</p>
-
-          <strong id="quizScore">0 / 5</strong>
-
-          <h2 id="quizResultText">
-            다시 한 번 도전해보세요!
-          </h2>
-
-          <button
-            class="primary-button"
-            onclick="restartQuiz()"
-          >
-            TRY AGAIN
-            <span>↻</span>
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= ARCHIVE ================= -->
-
-    <section class="page" id="archive">
-
-      <div class="page-hero">
-
-        <p class="section-label">05 / ARCHIVE</p>
-
-        <h1>
-          Little<br>
-          <span>memories.</span>
-        </h1>
-
-        <p>
-          오래 기억하고 싶은 순간들을<br>
-          작은 기록으로 남겨두는 공간.
-        </p>
-
-      </div>
-
-
-      <div class="archive-grid">
-
-        <article class="archive-card">
-          <span class="archive-date">01</span>
-          <div class="archive-icon">□</div>
-          <p class="archive-category">BEGINNING</p>
-          <h2>OPEN THE DOOR</h2>
-          <p>
-            ONEDOOR :DOOR의 첫 번째 문.
-          </p>
-        </article>
-
-
-        <article class="archive-card">
-          <span class="archive-date">02</span>
-          <div class="archive-icon">♪</div>
-          <p class="archive-category">MUSIC</p>
-          <h2>OUR PLAYLIST</h2>
-          <p>
-            함께 듣고 싶은 노래들을 기록해요.
-          </p>
-        </article>
-
-
-        <article class="archive-card">
-          <span class="archive-date">03</span>
-          <div class="archive-icon">○</div>
-          <p class="archive-category">MOMENT</p>
-          <h2>ONEDOOR MOMENTS</h2>
-          <p>
-            좋아하는 순간들을 차곡차곡.
-          </p>
-        </article>
-
-
-        <article class="archive-card">
-          <span class="archive-date">04</span>
-          <div class="archive-icon">+</div>
-          <p class="archive-category">NEXT</p>
-          <h2>MORE TO COME</h2>
-          <p>
-            앞으로 더 많은 기록이 추가될 예정이에요.
-          </p>
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= BIRTHDAY ================= -->
-
-    <section class="page" id="birthday">
-
-      <div class="page-hero centered">
-
-        <p class="section-label">06 / BIRTHDAY</p>
-
-        <h1>
-          Birthday<br>
-          <span>countdown.</span>
-        </h1>
-
-        <p>
-          다음으로 찾아오는 멤버의 생일까지<br>
-          남은 시간을 확인해보세요.
-        </p>
-
-      </div>
-
-
-      <div class="birthday-box">
-
-        <p class="birthday-label">NEXT BIRTHDAY</p>
-
-        <h2 id="birthdayMember">TAESAN</h2>
-
-        <p id="birthdayDate">08.10</p>
-
-        <div class="countdown">
-
-          <div>
-            <strong id="days">--</strong>
-            <span>DAYS</span>
-          </div>
-
-          <div>
-            <strong id="hours">--</strong>
-            <span>HOURS</span>
-          </div>
-
-          <div>
-            <strong id="minutes">--</strong>
-            <span>MINUTES</span>
-          </div>
-
-          <div>
-            <strong id="seconds">--</strong>
-            <span>SECONDS</span>
-          </div>
-
-        </div>
-
-        <div class="birthday-list">
-
-          <div>
-            <span>성호</span>
-            <strong>09.04</strong>
-          </div>
-
-          <div>
-            <span>리우</span>
-            <strong>10.22</strong>
-          </div>
-
-          <div>
-            <span>재현</span>
-            <strong>12.04</strong>
-          </div>
-
-          <div>
-            <span>태산</span>
-            <strong>08.10</strong>
-          </div>
-
-          <div>
-            <span>이한</span>
-            <strong>10.20</strong>
-          </div>
-
-          <div>
-            <span>운학</span>
-            <strong>11.29</strong>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= MY DOOR ================= -->
-
-    <section class="page" id="mydoor">
-
-      <div class="page-hero">
-
-        <p class="section-label">07 / MY DOOR</p>
-
-        <h1>
-          Your<br>
-          <span>own door.</span>
-        </h1>
-
-        <p>
-          내가 좋아하는 멤버를 선택하고<br>
-          나만의 문을 만들어보세요.
-        </p>
-
-      </div>
-
-
-      <div class="mydoor-box">
-
-        <div class="mydoor-mark">
-          <span class="logo-mark"></span>
-        </div>
-
-        <p class="mydoor-label">MY DOOR BELONGS TO</p>
-
-        <h2 id="selectedMember">아직 선택하지 않았어요.</h2>
-
-        <p id="mydoorMessage">
-          MEMBERS에서 좋아하는 멤버를 선택해보세요.
-        </p>
-
-        <button
-          class="primary-button"
-          onclick="showPage('members')"
-        >
-          CHOOSE MEMBER
-          <span>→</span>
-        </button>
-
-      </div>
-
-
-      <div class="mydoor-note">
-        <span>LOCAL STORAGE</span>
-        선택한 멤버는 이 브라우저에 저장돼요.
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- ================= FOOTER ================= -->
-
-  <footer class="footer">
-
-    <div class="footer-top">
-
-      <div>
-        <span class="footer-logo">ONEDOOR :DOOR</span>
-        <p>
-          A little space for ONEDOOR.
-        </p>
-      </div>
-
-      <button onclick="showPage('home')">
-        BACK TO TOP ↑
-      </button>
+      <p id="homeMyDoorMessage">
+        좋아하는 멤버를 선택하고<br>
+        나만의 문을 열어보세요.
+      </p>
 
     </div>
 
-    <div class="footer-bottom">
-      <span>OPEN THE DOOR.</span>
-      <span>MADE FOR ONEDOOR</span>
-    </div>
+    <button
+      class="primary-button"
+      onclick="showPage('mydoor')"
+    >
+      OPEN MY DOOR
+      <span>→</span>
+    </button>
 
-  </footer>
+  </div>
 
-
-  <script src="script.js"></script>
-
-</body>
-</html>
+</section>
