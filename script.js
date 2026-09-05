@@ -1,16 +1,13 @@
 /* ==================================================
-   ONEDOOR :DOOR
-   script.js — v3.0
+   ONEDOOR :DOOR v2.0
    ================================================== */
 
 
-/* ==================================================
-   PAGE NAVIGATION
-   ================================================== */
+/* ================= PAGE NAVIGATION ================= */
+
+const pages = document.querySelectorAll(".page");
 
 function showPage(pageName) {
-
-  const pages = document.querySelectorAll(".page");
 
   pages.forEach(page => {
     page.classList.remove("active");
@@ -22,109 +19,104 @@ function showPage(pageName) {
     target.classList.add("active");
   }
 
-  // 모바일 메뉴 닫기
-  const mobileMenu = document.getElementById("mobileMenu");
-
-  if (mobileMenu) {
-    mobileMenu.classList.remove("open");
-  }
+  closeMobileMenu();
 
   window.scrollTo({
     top: 0,
     behavior: "smooth"
   });
+
+  updatePageTitle(pageName);
 }
 
 
-/* ==================================================
-   MOBILE MENU
-   ================================================== */
+function updatePageTitle(pageName) {
 
-function toggleMobileMenu() {
+  const titles = {
+    home: "ONEDOOR :DOOR",
+    members: "MEMBERS — ONEDOOR :DOOR",
+    song: "SONG — ONEDOOR :DOOR",
+    quiz: "QUIZ — ONEDOOR :DOOR",
+    archive: "ARCHIVE — ONEDOOR :DOOR",
+    birthday: "BIRTHDAY — ONEDOOR :DOOR",
+    mydoor: "MY DOOR — ONEDOOR :DOOR"
+  };
 
-  const mobileMenu =
-    document.getElementById("mobileMenu");
-
-  if (!mobileMenu) return;
-
-  mobileMenu.classList.toggle("open");
+  document.title = titles[pageName] || "ONEDOOR :DOOR";
 }
 
 
-/* ==================================================
-   HOME → TODAY
-   ================================================== */
+/* ================= MOBILE MENU ================= */
+
+const menuButton = document.getElementById("menuButton");
+const mobileNav = document.getElementById("mobileNav");
+
+if (menuButton) {
+
+  menuButton.addEventListener("click", () => {
+
+    const isOpen = mobileNav.classList.toggle("open");
+
+    menuButton.classList.toggle("active", isOpen);
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      isOpen ? "true" : "false"
+    );
+
+  });
+
+}
+
+
+function closeMobileMenu() {
+
+  if (!mobileNav || !menuButton) return;
+
+  mobileNav.classList.remove("open");
+  menuButton.classList.remove("active");
+
+  menuButton.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+}
+
+
+/* ================= HOME SCROLL ================= */
 
 function scrollToToday() {
 
-  const today =
-    document.getElementById("today");
+  const home = document.getElementById("home");
 
-  if (!today) return;
+  if (!home) return;
 
-  today.scrollIntoView({
-    behavior: "smooth"
-  });
+  const today = document.getElementById("today");
+
+  if (today) {
+
+    today.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+  }
+
 }
 
 
-/* ==================================================
-   MEMBER DATA
-   ================================================== */
+/* ================= MEMBERS / MY DOOR ================= */
 
-const members = [
+const memberStorageKey = "onedoorSelectedMember";
 
-  {
-    name: "성호",
-    birthday: "09.04"
-  },
-
-  {
-    name: "리우",
-    birthday: "10.22"
-  },
-
-  {
-    name: "재현",
-    birthday: "12.04"
-  },
-
-  {
-    name: "태산",
-    birthday: "08.10"
-  },
-
-  {
-    name: "이한",
-    birthday: "10.20"
-  },
-
-  {
-    name: "운학",
-    birthday: "11.29"
-  }
-
-];
-
-
-/* ==================================================
-   MY DOOR
-   ================================================== */
-
-const memberStorageKey =
-  "onedoorSelectedMember";
-
-
-function selectMember(memberName) {
+function selectMember(member) {
 
   localStorage.setItem(
     memberStorageKey,
-    memberName
+    member
   );
 
   updateMyDoor();
-
-  updateHome();
 
   showPage("mydoor");
 }
@@ -133,93 +125,72 @@ function selectMember(memberName) {
 function updateMyDoor() {
 
   const selectedMember =
-    localStorage.getItem(
-      memberStorageKey
-    );
+    localStorage.getItem(memberStorageKey);
 
-  const memberName =
-    document.getElementById(
-      "selectedMemberName"
-    );
+  const memberElement =
+    document.getElementById("selectedMember");
 
-  const memberMessage =
-    document.getElementById(
-      "selectedMemberMessage"
-    );
+  const messageElement =
+    document.getElementById("mydoorMessage");
 
-  if (!selectedMember) {
+  if (!memberElement || !messageElement) return;
 
-    if (memberName) {
-      memberName.textContent =
-        "아직 멤버를 선택하지 않았어요.";
-    }
+  if (selectedMember) {
 
-    if (memberMessage) {
-      memberMessage.textContent =
-        "MEMBERS에서 좋아하는 멤버를 선택해보세요.";
-    }
-
-    return;
-  }
-
-  if (memberName) {
-    memberName.textContent =
+    memberElement.textContent =
       selectedMember;
+
+    messageElement.textContent =
+      `${selectedMember}와 함께하는 나만의 문이 열렸어요.`;
+
+  } else {
+
+    memberElement.textContent =
+      "아직 선택하지 않았어요.";
+
+    messageElement.textContent =
+      "MEMBERS에서 좋아하는 멤버를 선택해보세요.";
+
   }
 
-  if (memberMessage) {
-    memberMessage.textContent =
-      `${selectedMember}의 DOOR가 열렸어요.`;
-  }
 }
 
 
-/* ==================================================
-   SONG DATA
-   ================================================== */
+/* ================= SONG ================= */
 
 const songs = [
-
   {
     title: "One and Only",
-    description: "오늘의 ONEDOOR 추천곡"
+    description: "오늘의 문을 여는 첫 번째 노래."
   },
-
   {
     title: "But I Like You",
-    description: "오늘의 ONEDOOR 추천곡"
+    description: "가볍게 시작하고 싶은 날의 노래."
   },
-
   {
     title: "Serenade",
-    description: "오늘의 ONEDOOR 추천곡"
+    description: "조금 더 따뜻한 분위기가 필요한 날."
   },
-
   {
     title: "Earth, Wind & Fire",
-    description: "오늘의 ONEDOOR 추천곡"
+    description: "기분을 확 끌어올리고 싶은 날."
   },
-
   {
     title: "Nice Guy",
-    description: "오늘의 ONEDOOR 추천곡"
+    description: "오늘은 조금 자신감 있게."
   },
-
   {
     title: "Dangerous",
-    description: "오늘의 ONEDOOR 추천곡"
+    description: "에너지 넘치는 하루를 위한 선택."
   },
-
   {
     title: "123-78",
-    description: "오늘의 ONEDOOR 추천곡"
+    description: "리듬에 맞춰 문을 열어보세요."
   },
-
   {
     title: "Call Me",
-    description: "오늘의 ONEDOOR 추천곡"
+    description: "조용히 음악을 즐기고 싶은 날."
   }
-
 ];
 
 
@@ -228,540 +199,528 @@ let currentSongIndex = 0;
 
 function pickSong() {
 
-  currentSongIndex =
-    Math.floor(
-      Math.random() * songs.length
-    );
+  let nextIndex;
 
-  const song =
-    songs[currentSongIndex];
+  do {
+    nextIndex =
+      Math.floor(
+        Math.random() * songs.length
+      );
+  } while (
+    songs.length > 1 &&
+    nextIndex === currentSongIndex
+  );
 
-  const songTitle =
-    document.getElementById(
-      "randomSongTitle"
-    );
+  currentSongIndex = nextIndex;
 
-  const songDescription =
-    document.getElementById(
-      "randomSongDescription"
-    );
+  const song = songs[currentSongIndex];
 
-  if (songTitle) {
-    songTitle.textContent =
-      song.title;
+  const title =
+    document.getElementById("songTitle");
+
+  const description =
+    document.getElementById("songDescription");
+
+  const number =
+    document.getElementById("songNumber");
+
+  if (title) {
+    title.textContent = song.title;
   }
 
-  if (songDescription) {
-    songDescription.textContent =
+  if (description) {
+    description.textContent =
       song.description;
   }
 
-  updateHome();
+  if (number) {
+
+    number.textContent =
+      String(currentSongIndex + 1).padStart(2, "0")
+      + " / "
+      + String(songs.length).padStart(2, "0");
+
+  }
+
 }
 
 
-/* ==================================================
-   QUIZ
-   ================================================== */
+/* ================= QUIZ ================= */
 
-const quizData = [
+const quizQuestions = [
+  {
+    question: "BOYNEXTDOOR의 공식 팬덤명은?",
+    answers: [
+      "ONEDOOR",
+      "BND",
+      "DOOR",
+      "NEXTDOOR"
+    ],
+    correct: 0
+  },
 
   {
-    question:
-      "BOYNEXTDOOR의 멤버는 몇 명일까요?",
-
-    options: [
+    question: "BOYNEXTDOOR는 몇 명의 멤버로 구성되어 있을까요?",
+    answers: [
       "4명",
       "5명",
       "6명",
       "7명"
     ],
-
-    answer: 2
+    correct: 2
   },
 
   {
-    question:
-      "BOYNEXTDOOR의 데뷔일은?",
-
-    options: [
-      "2022년 5월 30일",
-      "2023년 5월 30일",
-      "2023년 6월 1일",
-      "2024년 5월 30일"
-    ],
-
-    answer: 1
-  },
-
-  {
-    question:
-      "BOYNEXTDOOR의 팬덤명은?",
-
-    options: [
-      "ONEDOOR",
-      "BND",
-      "DOOR",
-      "NEXT"
-    ],
-
-    answer: 0
-  },
-
-  {
-    question:
-      "다음 중 BOYNEXTDOOR의 멤버가 아닌 사람은?",
-
-    options: [
+    question: "다음 중 BOYNEXTDOOR의 멤버가 아닌 사람은?",
+    answers: [
       "성호",
+      "리우",
       "태산",
-      "이한",
-      "민규"
+      "민호"
     ],
-
-    answer: 3
+    correct: 3
   },
 
   {
-    question:
-      "BOYNEXTDOOR의 첫 번째 싱글 앨범은?",
-
-    options: [
-      "WHO!",
-      "HOW?",
-      "19.99",
-      "WHY.."
+    question: "다음 중 BOYNEXTDOOR의 곡은?",
+    answers: [
+      "One and Only",
+      "ONE MORE TIME",
+      "Door Open",
+      "My BOY"
     ],
+    correct: 0
+  },
 
-    answer: 0
+  {
+    question: "ONEDOOR :DOOR에서 멤버를 선택하면 저장되는 공간은?",
+    answers: [
+      "ARCHIVE",
+      "MY DOOR",
+      "SONG",
+      "BIRTHDAY"
+    ],
+    correct: 1
   }
-
 ];
 
 
-let currentQuiz = 0;
+let quizIndex = 0;
 let quizScore = 0;
+let quizAnswered = false;
 
 
 function loadQuiz() {
 
   const question =
-    document.getElementById(
-      "quizQuestion"
-    );
+    quizQuestions[quizIndex];
 
-  const options =
-    document.getElementById(
-      "quizOptions"
-    );
+  const questionElement =
+    document.getElementById("quizQuestion");
 
-  const result =
-    document.getElementById(
-      "quizResult"
-    );
+  const answersElement =
+    document.getElementById("quizAnswers");
 
-  if (!question || !options) return;
+  const progressElement =
+    document.getElementById("quizProgress");
 
-  if (result) {
-    result.textContent = "";
-  }
+  const progressFill =
+    document.getElementById("progressFill");
 
-  const quiz =
-    quizData[currentQuiz];
+  if (
+    !questionElement ||
+    !answersElement
+  ) return;
 
-  question.textContent =
-    quiz.question;
 
-  options.innerHTML = "";
+  questionElement.textContent =
+    question.question;
 
-  quiz.options.forEach(
-    (option, index) => {
+
+  answersElement.innerHTML = "";
+
+
+  question.answers.forEach(
+    (answer, index) => {
 
       const button =
         document.createElement("button");
 
-      button.textContent =
-        option;
-
       button.className =
-        "quiz-option";
+        "quiz-answer";
+
+      button.innerHTML = `
+        <span class="answer-number">
+          ${String.fromCharCode(65 + index)}
+        </span>
+        <span>${answer}</span>
+      `;
 
       button.addEventListener(
         "click",
-        () => checkAnswer(index)
+        () => answerQuiz(index)
       );
 
-      options.appendChild(button);
+      answersElement.appendChild(button);
 
     }
   );
+
+
+  if (progressElement) {
+
+    progressElement.textContent =
+      `QUESTION ${String(quizIndex + 1).padStart(2, "0")} / ${String(quizQuestions.length).padStart(2, "0")}`;
+
+  }
+
+
+  if (progressFill) {
+
+    const percent =
+      ((quizIndex + 1) / quizQuestions.length) * 100;
+
+    progressFill.style.width =
+      `${percent}%`;
+
+  }
+
 }
 
 
-function checkAnswer(selectedIndex) {
+function answerQuiz(selectedIndex) {
 
-  const quiz =
-    quizData[currentQuiz];
+  if (quizAnswered) return;
 
-  const options =
-    document.querySelectorAll(
-      ".quiz-option"
-    );
+  quizAnswered = true;
 
-  options.forEach(button => {
-    button.disabled = true;
-  });
+  const question =
+    quizQuestions[quizIndex];
 
-  if (selectedIndex === quiz.answer) {
+  const answerButtons =
+    document.querySelectorAll(".quiz-answer");
+
+  answerButtons.forEach(
+    (button, index) => {
+
+      button.disabled = true;
+
+      if (index === question.correct) {
+        button.classList.add("correct");
+      }
+
+      if (
+        index === selectedIndex &&
+        selectedIndex !== question.correct
+      ) {
+        button.classList.add("wrong");
+      }
+
+    }
+  );
+
+
+  if (
+    selectedIndex === question.correct
+  ) {
     quizScore++;
   }
 
-  currentQuiz++;
 
-  if (currentQuiz < quizData.length) {
+  setTimeout(() => {
 
-    setTimeout(() => {
+    quizIndex++;
+
+    quizAnswered = false;
+
+    if (
+      quizIndex >= quizQuestions.length
+    ) {
+      showQuizResult();
+    } else {
       loadQuiz();
-    }, 600);
+    }
 
-  } else {
+  }, 750);
 
-    showQuizResult();
-
-  }
 }
 
 
 function showQuizResult() {
 
-  const question =
-    document.getElementById(
-      "quizQuestion"
-    );
-
-  const options =
-    document.getElementById(
-      "quizOptions"
-    );
+  const content =
+    document.getElementById("quizContent");
 
   const result =
-    document.getElementById(
-      "quizResult"
-    );
+    document.getElementById("quizResult");
 
-  if (question) {
-    question.textContent =
-      "QUIZ COMPLETE!";
-  }
+  const score =
+    document.getElementById("quizScore");
 
-  if (options) {
-    options.innerHTML = "";
+  const resultText =
+    document.getElementById("quizResultText");
+
+
+  if (content) {
+    content.classList.add("hidden");
   }
 
   if (result) {
+    result.classList.remove("hidden");
+  }
 
-    result.textContent =
-      `${quizScore} / ${quizData.length} 정답!`;
+  if (score) {
+
+    score.textContent =
+      `${quizScore} / ${quizQuestions.length}`;
 
   }
+
+
+  if (resultText) {
+
+    if (quizScore === 5) {
+
+      resultText.textContent =
+        "완벽해요. 원도어력 MAX!";
+
+    } else if (quizScore >= 3) {
+
+      resultText.textContent =
+        "꽤 잘 알고 있네요. 조금만 더!";
+
+    } else {
+
+      resultText.textContent =
+        "다시 한 번 도전해보세요!";
+
+    }
+
+  }
+
 }
 
 
-function resetQuiz() {
+function restartQuiz() {
 
-  currentQuiz = 0;
+  quizIndex = 0;
   quizScore = 0;
+  quizAnswered = false;
+
+  const content =
+    document.getElementById("quizContent");
+
+  const result =
+    document.getElementById("quizResult");
+
+
+  if (content) {
+    content.classList.remove("hidden");
+  }
+
+  if (result) {
+    result.classList.add("hidden");
+  }
 
   loadQuiz();
+
 }
 
 
-/* ==================================================
-   BIRTHDAY
-   ================================================== */
+/* ================= BIRTHDAY ================= */
+
+const birthdays = [
+  {
+    name: "성호",
+    month: 9,
+    day: 4
+  },
+  {
+    name: "리우",
+    month: 10,
+    day: 22
+  },
+  {
+    name: "재현",
+    month: 12,
+    day: 4
+  },
+  {
+    name: "태산",
+    month: 8,
+    day: 10
+  },
+  {
+    name: "이한",
+    month: 10,
+    day: 20
+  },
+  {
+    name: "운학",
+    month: 11,
+    day: 29
+  }
+];
+
 
 function getNextBirthday() {
 
-  const today =
-    new Date();
+  const now = new Date();
 
-  const currentYear =
-    today.getFullYear();
+  let candidates =
+    birthdays.map(person => {
 
-  let upcoming = null;
+      let year =
+        now.getFullYear();
 
-
-  members.forEach(member => {
-
-    const [month, day] =
-      member.birthday
-        .split(".")
-        .map(Number);
-
-    let birthday =
-      new Date(
-        currentYear,
-        month - 1,
-        day
-      );
-
-    if (birthday < today) {
-
-      birthday =
+      let date =
         new Date(
-          currentYear + 1,
-          month - 1,
-          day
+          year,
+          person.month - 1,
+          person.day,
+          0,
+          0,
+          0
         );
 
-    }
+      if (date < now) {
+        date =
+          new Date(
+            year + 1,
+            person.month - 1,
+            person.day,
+            0,
+            0,
+            0
+          );
+      }
 
-    if (
-      !upcoming ||
-      birthday < upcoming.date
-    ) {
-
-      upcoming = {
-        name: member.name,
-        month,
-        day,
-        date: birthday
+      return {
+        ...person,
+        date
       };
 
-    }
+    });
 
-  });
 
-  return upcoming;
+  candidates.sort(
+    (a, b) =>
+      a.date.getTime() -
+      b.date.getTime()
+  );
+
+
+  return candidates[0];
 }
 
 
 function updateBirthday() {
 
-  const birthday =
+  const next =
     getNextBirthday();
 
-  if (!birthday) return;
+  const now =
+    new Date();
+
+  const difference =
+    next.date.getTime() -
+    now.getTime();
 
 
-  const member =
-    document.getElementById(
-      "birthdayMember"
+  const days =
+    Math.floor(
+      difference /
+      (1000 * 60 * 60 * 24)
     );
 
-  const date =
-    document.getElementById(
-      "birthdayDate"
-    );
-
-  const countdown =
-    document.getElementById(
-      "birthdayCountdown"
-    );
-
-
-  if (member) {
-    member.textContent =
-      birthday.name;
-  }
-
-  if (date) {
-
-    date.textContent =
-      `${String(birthday.month).padStart(2, "0")}.${String(birthday.day).padStart(2, "0")}`;
-
-  }
-
-
-  if (countdown) {
-
-    const now =
-      new Date();
-
-    const difference =
-      birthday.date - now;
-
-    const days =
-      Math.ceil(
-        difference /
+  const hours =
+    Math.floor(
+      (
+        difference %
         (1000 * 60 * 60 * 24)
-      );
-
-    countdown.textContent =
-      `D-${days}`;
-
-  }
-}
-
-
-/* ==================================================
-   v3.0 HOME UPDATE
-   ================================================== */
-
-function updateHome() {
-
-
-  /* ---------- TODAY'S SONG ---------- */
-
-  const homeSongTitle =
-    document.getElementById(
-      "homeSongTitle"
+      ) /
+      (1000 * 60 * 60)
     );
 
-  const homeSongDescription =
-    document.getElementById(
-      "homeSongDescription"
+  const minutes =
+    Math.floor(
+      (
+        difference %
+        (1000 * 60 * 60)
+      ) /
+      (1000 * 60)
     );
 
-  const currentSong =
-    songs[currentSongIndex];
-
-
-  if (
-    homeSongTitle &&
-    currentSong
-  ) {
-
-    homeSongTitle.textContent =
-      currentSong.title;
-
-  }
-
-
-  if (
-    homeSongDescription &&
-    currentSong
-  ) {
-
-    homeSongDescription.textContent =
-      currentSong.description;
-
-  }
-
-
-  /* ---------- NEXT BIRTHDAY ---------- */
-
-  const nextBirthday =
-    getNextBirthday();
-
-
-  const homeBirthdayMember =
-    document.getElementById(
-      "homeBirthdayMember"
+  const seconds =
+    Math.floor(
+      (
+        difference %
+        (1000 * 60)
+      ) /
+      1000
     );
 
-  const homeBirthdayDate =
-    document.getElementById(
-      "homeBirthdayDate"
-    );
+
+  setText(
+    "days",
+    String(days).padStart(2, "0")
+  );
+
+  setText(
+    "hours",
+    String(hours).padStart(2, "0")
+  );
+
+  setText(
+    "minutes",
+    String(minutes).padStart(2, "0")
+  );
+
+  setText(
+    "seconds",
+    String(seconds).padStart(2, "0")
+  );
+
+
+  setText(
+    "birthdayMember",
+    next.name
+  );
+
+  setText(
+    "birthdayDate",
+    `${String(next.month).padStart(2, "0")}.${String(next.day).padStart(2, "0")}`
+  );
+
 
   const homeCountdown =
     document.getElementById(
       "homeCountdown"
     );
 
+  if (homeCountdown) {
 
-  if (nextBirthday) {
-
-    if (homeBirthdayMember) {
-
-      homeBirthdayMember.textContent =
-        nextBirthday.name;
-
-    }
-
-
-    if (homeBirthdayDate) {
-
-      homeBirthdayDate.textContent =
-        `${String(nextBirthday.month).padStart(2, "0")}.${String(nextBirthday.day).padStart(2, "0")} birthday`;
-
-    }
-
-
-    if (homeCountdown) {
-
-      const now =
-        new Date();
-
-      const difference =
-        nextBirthday.date - now;
-
-      const days =
-        Math.ceil(
-          difference /
-          (1000 * 60 * 60 * 24)
-        );
-
-      homeCountdown.textContent =
-        `D-${days}`;
-
-    }
-
-  }
-
-
-  /* ---------- YOUR DOOR ---------- */
-
-  const selectedMember =
-    localStorage.getItem(
-      memberStorageKey
-    );
-
-
-  const homeSelectedMember =
-    document.getElementById(
-      "homeSelectedMember"
-    );
-
-  const homeMyDoorMessage =
-    document.getElementById(
-      "homeMyDoorMessage"
-    );
-
-
-  if (selectedMember) {
-
-    if (homeSelectedMember) {
-
-      homeSelectedMember.textContent =
-        `${selectedMember}'s DOOR`;
-
-    }
-
-
-    if (homeMyDoorMessage) {
-
-      homeMyDoorMessage.textContent =
-        `${selectedMember}와 함께하는 나만의 문이 열려 있어요.`;
-
-    }
-
-  } else {
-
-    if (homeSelectedMember) {
-
-      homeSelectedMember.textContent =
-        "아직 당신의 DOOR가 없어요.";
-
-    }
-
-
-    if (homeMyDoorMessage) {
-
-      homeMyDoorMessage.innerHTML =
-        "좋아하는 멤버를 선택하고<br>나만의 문을 열어보세요.";
-
-    }
+    homeCountdown.textContent =
+      `D-${days}`;
 
   }
 
 }
 
 
-/* ==================================================
-   INITIALIZE
-   ================================================== */
+function setText(id, value) {
+
+  const element =
+    document.getElementById(id);
+
+  if (element) {
+    element.textContent = value;
+  }
+
+}
+
+
+/* ================= INITIALIZE ================= */
 
 document.addEventListener(
   "DOMContentLoaded",
@@ -775,7 +734,10 @@ document.addEventListener(
 
     pickSong();
 
-    updateHome();
+    setInterval(
+      updateBirthday,
+      1000
+    );
 
   }
 );
