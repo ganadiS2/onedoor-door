@@ -1,13 +1,9 @@
-:root {
-  --black: #182126;
-  --blue: #4e9eb0;
-  --blue-light: #eaf5f7;
-  --gray: #718087;
-  --light: #f5f7f7;
-  --line: #dce3e5;
-  --white: #ffffff;
-  --radius: 24px;
-}
+/* ==================================================
+   ONEDOOR :DOOR v2.0
+   ================================================== */
+
+
+/* ================= RESET ================= */
 
 * {
   box-sizing: border-box;
@@ -21,1019 +17,1719 @@ html {
 
 body {
   font-family: "DM Sans", sans-serif;
-  color: var(--black);
-  background: var(--white);
+  background: #f4fbfd;
+  color: #172027;
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 button {
   font: inherit;
+  color: inherit;
   border: 0;
   background: none;
-  color: inherit;
   cursor: pointer;
 }
 
-button:focus-visible {
-  outline: 3px solid var(--blue);
-  outline-offset: 3px;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* ================= VARIABLES ================= */
+
+:root {
+  --bg: #f4fbfd;
+  --blue: #61b6ca;
+  --blue-dark: #3e98ae;
+  --blue-light: #dff3f8;
+  --black: #172027;
+  --gray: #66737a;
+  --line: #cbdce1;
+  --white: #ffffff;
 }
 
 
 /* ================= HEADER ================= */
 
 .header {
-  position: sticky;
-  top: 0;
+  position: fixed;
   z-index: 1000;
-  background: rgba(255,255,255,0.94);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid var(--line);
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(244, 251, 253, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(203, 220, 225, 0.8);
 }
 
 .header-inner {
-  max-width: 1180px;
-  margin: auto;
-  height: 78px;
-  padding: 0 30px;
+  width: min(1180px, calc(100% - 40px));
+  height: 76px;
+  margin: 0 auto;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+
+/* LOGO */
+
 .logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
+
   font-family: "Space Grotesk", sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
-  letter-spacing: -1px;
+  letter-spacing: -0.8px;
 }
 
 .logo strong {
-  color: var(--blue);
+  font-weight: 700;
 }
 
-.logo-door {
-  width: 30px;
-  height: 30px;
-  border: 2px solid var(--black);
-  display: grid;
-  place-items: center;
-  font-size: 22px;
+.logo-mark {
+  width: 21px;
+  height: 25px;
+
+  border: 2.5px solid var(--black);
+  display: inline-block;
+
+  position: relative;
 }
+
+.logo-mark::after {
+  content: "";
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  right: 2px;
+  top: 8px;
+
+  background: var(--blue);
+}
+
+
+/* DESKTOP NAV */
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.desktop-nav button {
+  padding: 10px 12px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+
+  transition: 0.2s ease;
+}
+
+.desktop-nav button:hover {
+  color: var(--blue-dark);
+}
+
+
+/* MOBILE MENU BUTTON */
 
 .menu-button {
   display: none;
+
   width: 42px;
   height: 42px;
-  flex-direction: column;
+
+  align-items: center;
   justify-content: center;
-  gap: 6px;
+  flex-direction: column;
+  gap: 5px;
+
+  border: 1px solid var(--line);
+  border-radius: 50%;
 }
 
 .menu-button span {
-  display: block;
-  width: 27px;
-  height: 2px;
+  width: 17px;
+  height: 1.5px;
   background: var(--black);
+
+  transition: 0.25s ease;
 }
 
-.nav {
-  display: flex;
-  gap: 28px;
+.menu-button.active span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
 }
 
-.nav button {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  transition: color .2s;
+.menu-button.active span:nth-child(2) {
+  opacity: 0;
 }
 
-.nav button:hover {
-  color: var(--blue);
+.menu-button.active span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
 }
 
 
-/* ================= COMMON ================= */
+/* MOBILE NAV */
+
+.mobile-nav {
+  display: none;
+}
+
+
+/* ================= PAGE SYSTEM ================= */
+
+main {
+  padding-top: 76px;
+}
 
 .page {
   display: none;
-  min-height: 70vh;
+  min-height: calc(100vh - 76px);
 }
 
 .page.active {
   display: block;
 }
 
-.section {
-  max-width: 1180px;
-  margin: auto;
-  padding: 100px 30px;
-}
-
-.section-label {
-  color: var(--blue);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  margin-bottom: 13px;
-}
-
-.page-header {
-  max-width: 700px;
-  padding: 90px 30px 50px;
-  margin: auto;
-}
-
-.page-header h2 {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(42px, 7vw, 78px);
-  line-height: .98;
-  letter-spacing: -4px;
-  margin-bottom: 22px;
-}
-
-.page-header p {
-  color: var(--gray);
-  font-size: 16px;
-}
-
-.back-home {
-  display: block;
-  max-width: 1180px;
-  margin: 70px auto 100px;
-  padding: 0 30px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.back-home:hover {
-  color: var(--blue);
-}
-
 
 /* ================= HERO ================= */
 
 .hero {
-  max-width: 1180px;
-  margin: auto;
-  padding: 150px 30px 130px;
-  text-align: center;
+  min-height: calc(100vh - 76px);
+
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 46px 0 38px;
 }
 
-.hero-label {
-  color: var(--blue);
+.hero-top,
+.hero-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  color: var(--gray);
+}
+
+.hero-content {
+  padding: 70px 0;
+}
+
+.eyebrow,
+.section-label {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 4px;
-  font-size: 15px;
-  margin-bottom: 32px;
+  letter-spacing: 1.8px;
+  color: var(--gray);
 }
 
 .hero h1 {
+  margin-top: 24px;
+
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(75px, 14vw, 175px);
-  line-height: .82;
-  letter-spacing: -9px;
+  font-size: clamp(78px, 13vw, 190px);
+  line-height: 0.82;
+  letter-spacing: -7px;
+  font-weight: 700;
 }
 
 .hero h1 span {
+  display: block;
   color: var(--blue);
+  margin-left: 7vw;
 }
 
-.hero-description {
-  margin-top: 45px;
-  color: var(--gray);
-  font-size: 19px;
-  line-height: 1.8;
+.hero-copy {
+  margin-top: 50px;
+
+  font-size: 17px;
+  line-height: 1.65;
 }
 
 .primary-button {
-  margin-top: 38px;
+  margin-top: 27px;
+
+  min-height: 48px;
+  padding: 0 21px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
   background: var(--black);
-  color: white;
-  padding: 20px 35px;
-  border-radius: 100px;
-  font-size: 14px;
+  color: var(--white);
+
+  border-radius: 999px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: .5px;
-  transition: transform .2s, background .2s;
+  letter-spacing: 0.7px;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 .primary-button:hover {
   transform: translateY(-3px);
-  background: var(--blue);
+  background: var(--blue-dark);
 }
 
-.primary-button.small {
-  padding: 16px 24px;
-  font-size: 12px;
-  margin-top: 25px;
+.primary-button span {
+  font-size: 17px;
+}
+
+.scroll-line {
+  display: block;
+  width: 100px;
+  height: 1px;
+  background: var(--line);
 }
 
 
-/* ================= TODAY ================= */
+/* ================= SECTIONS ================= */
 
-.today {
-  background: var(--light);
-  max-width: none;
-  padding-left: max(30px, calc((100vw - 1120px) / 2));
-  padding-right: max(30px, calc((100vw - 1120px) / 2));
+.section {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 130px 0;
 }
 
-.today h2 {
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 50px;
+}
+
+.section-heading.simple {
+  margin-bottom: 45px;
+}
+
+.section-heading h2 {
+  margin-top: 15px;
+
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(42px, 6vw, 70px);
-  line-height: 1;
-  letter-spacing: -4px;
-  margin-bottom: 55px;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 0.98;
+  letter-spacing: -3px;
 }
+
+.section-heading h2 span {
+  color: var(--blue-dark);
+}
+
+.section-note {
+  color: var(--gray);
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: right;
+}
+
+
+/* ================= TODAY CARDS ================= */
 
 .today-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.feature-card {
-  position: relative;
-  min-height: 360px;
-  padding: 30px;
-  border-radius: var(--radius);
-  background: white;
-  border: 1px solid var(--line);
-  overflow: hidden;
-  transition: transform .25s, box-shadow .25s;
-}
-
-.feature-card:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 20px 50px rgba(24,33,38,.09);
-}
-
-.card-number {
-  font-size: 12px;
-  color: var(--gray);
-}
-
-.card-icon {
-  margin-top: 55px;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 42px;
-}
-
-.card-small-title {
-  margin-top: 15px;
-  color: var(--blue);
-  font-size: 12px;
-  letter-spacing: 2px;
-  font-weight: 700;
-}
-
-.feature-card h3 {
-  margin-top: 7px;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 30px;
-  letter-spacing: -1px;
-}
-
-.feature-card p {
-  margin-top: 13px;
-  color: var(--gray);
-}
-
-.card-arrow {
-  position: absolute;
-  right: 30px;
-  bottom: 27px;
-  font-size: 25px;
-}
-
-.countdown-mini {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 6px 11px;
-  background: var(--blue-light);
-  color: var(--blue);
-  border-radius: 100px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-
-/* ================= DOOR MENU ================= */
-
-.menu-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
-.menu-card {
+.feature-card {
+  min-height: 390px;
+
+  padding: 25px;
+
   position: relative;
-  min-height: 230px;
+  overflow: hidden;
+
   text-align: left;
-  padding: 28px;
+
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: white;
-  transition: all .25s;
+  border-radius: 18px;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 40px rgba(35, 74, 82, 0.09);
+}
+
+.song-feature {
+  background: #dff3f8;
+}
+
+.birthday-feature {
+  background: #ffffff;
+}
+
+.quiz-feature {
+  background: #eaf7fa;
+}
+
+.feature-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.feature-icon {
+  margin-top: 65px;
+
+  width: 56px;
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(23, 32, 39, 0.22);
+  border-radius: 50%;
+
+  font-size: 24px;
+}
+
+.feature-label {
+  margin-top: 28px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.feature-card h3 {
+  margin-top: 7px;
+
+  font-size: 25px;
+  letter-spacing: -1px;
+}
+
+.feature-description {
+  margin-top: 10px;
+
+  color: var(--gray);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.feature-arrow {
+  position: absolute;
+  right: 25px;
+  bottom: 22px;
+
+  font-size: 25px;
+}
+
+.mini-dday {
+  margin-top: 14px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue-dark);
+}
+
+
+/* ================= DOOR MENU ================= */
+
+.door-menu {
+  padding-top: 20px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.menu-card {
+  min-height: 130px;
+
+  padding: 25px;
+
+  display: grid;
+  grid-template-columns: 50px 1fr 30px;
+  align-items: center;
+
+  text-align: left;
+
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+
+  transition: 0.2s ease;
 }
 
 .menu-card:hover {
-  background: var(--black);
-  color: white;
-  transform: translateY(-5px);
+  background: var(--blue-light);
+  transform: translateX(5px);
 }
 
 .menu-number {
-  display: block;
-  color: var(--blue);
-  font-size: 12px;
-  font-weight: 700;
-  margin-bottom: 50px;
-}
-
-.menu-title {
-  display: block;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 27px;
-  font-weight: 700;
-}
-
-.menu-description {
-  display: block;
-  margin-top: 6px;
+  font-size: 10px;
   color: var(--gray);
 }
 
-.menu-card:hover .menu-description {
-  color: #c4d1d5;
+.menu-card strong {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 19px;
+  letter-spacing: -0.4px;
+}
+
+.menu-card p {
+  margin-top: 3px;
+
+  font-size: 12px;
+  color: var(--gray);
 }
 
 .menu-arrow {
-  position: absolute;
-  right: 28px;
-  bottom: 25px;
-  font-size: 24px;
+  font-size: 23px;
+}
+
+
+/* ================= CLOSING ================= */
+
+.closing-section {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+
+  padding: 130px 0 160px;
+}
+
+.closing-section h2 {
+  margin-top: 15px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(52px, 8vw, 100px);
+  line-height: 0.95;
+  letter-spacing: -4px;
+}
+
+.closing-section h2 span {
+  color: var(--blue-dark);
+}
+
+.outline-button {
+  margin-top: 35px;
+
+  min-height: 48px;
+  padding: 0 22px;
+
+  border: 1px solid var(--black);
+  border-radius: 999px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+
+  transition: 0.2s ease;
+}
+
+.outline-button:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+
+/* ================= INNER PAGE HERO ================= */
+
+.page-hero {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+
+  padding: 120px 0 70px;
+}
+
+.page-hero h1 {
+  margin-top: 20px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(65px, 10vw, 130px);
+  line-height: 0.86;
+  letter-spacing: -5px;
+}
+
+.page-hero h1 span {
+  color: var(--blue-dark);
+}
+
+.page-hero p:last-child {
+  margin-top: 30px;
+
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.page-hero.centered {
+  text-align: center;
+}
+
+.page-hero.centered p:last-child {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
 /* ================= MEMBERS ================= */
 
-.member-grid {
-  max-width: 1120px;
-  margin: auto;
-  padding: 0 30px;
+.members-grid {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 15px;
 }
 
 .member-card {
-  min-height: 300px;
-  padding: 28px;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  background: var(--light);
+  min-height: 330px;
+
+  padding: 24px;
+
+  position: relative;
+  overflow: hidden;
+
   text-align: left;
-  transition: .25s;
+
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+
+  transition: 0.25s ease;
 }
 
 .member-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-7px);
   background: var(--blue-light);
 }
 
+.member-number {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  color: var(--gray);
+}
+
 .member-symbol {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: var(--black);
-  color: white;
-  display: grid;
-  place-items: center;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 24px;
-  margin-bottom: 55px;
-}
+  width: 78px;
+  height: 78px;
 
-.member-card h3 {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 32px;
-  letter-spacing: -1px;
-}
-
-.member-card p {
-  margin-top: 5px;
-  color: var(--gray);
-}
-
-.member-select {
-  margin-top: 20px;
-  color: var(--blue);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-
-/* ================= MY DOOR ================= */
-
-.mydoor-box {
-  max-width: 850px;
-  margin: 0 auto;
-  padding: 30px;
-  border-radius: var(--radius);
-  background: var(--light);
-  border: 1px solid var(--line);
-}
-
-.mydoor-top {
   display: flex;
-  justify-content: space-between;
-  color: var(--gray);
-  font-size: 11px;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--line);
+  border-radius: 50%;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 28px;
   font-weight: 700;
-  letter-spacing: 2px;
+
+  color: var(--blue-dark);
 }
 
-.favorite-display {
-  min-height: 350px;
-  display: grid;
-  place-items: center;
-  text-align: center;
-}
-
-.favorite-empty .big-door {
-  font-size: 80px;
-  margin-bottom: 15px;
-}
-
-.favorite-empty h3 {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 25px;
-}
-
-.favorite-empty p {
-  color: var(--gray);
-  margin-top: 7px;
-}
-
-.favorite-member {
-  text-align: center;
-}
-
-.favorite-member .member-symbol {
-  margin: 0 auto 20px;
-  width: 100px;
-  height: 100px;
-  font-size: 34px;
-}
-
-.favorite-member h3 {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 48px;
-}
-
-.favorite-member p {
-  color: var(--gray);
-}
-
-.secondary-button {
+.member-card strong {
   display: block;
-  margin: auto;
-  padding: 17px 25px;
-  border: 1px solid var(--black);
-  border-radius: 100px;
-  font-size: 12px;
-  font-weight: 700;
+
+  margin-top: 65px;
+
+  font-size: 30px;
+  letter-spacing: -1.5px;
 }
 
-.secondary-button:hover {
-  background: var(--black);
-  color: white;
+.member-card small {
+  display: block;
+
+  margin-top: 2px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--gray);
+}
+
+.member-birthday {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  color: var(--gray);
+}
+
+.member-hint {
+  width: min(1180px, calc(100% - 40px));
+  margin: 25px auto 120px;
+
+  padding: 16px 18px;
+
+  background: var(--blue-light);
+  border-radius: 10px;
+
+  font-size: 12px;
+  color: var(--gray);
+}
+
+.member-hint span {
+  margin-right: 10px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--blue-dark);
 }
 
 
 /* ================= SONG ================= */
 
-.song-feature {
-  max-width: 850px;
-  margin: 0 auto;
+.song-box {
+  width: min(700px, calc(100% - 40px));
+  margin: 20px auto 140px;
+
   padding: 55px;
+
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+
+  text-align: center;
+}
+
+.song-decoration {
   display: flex;
   align-items: center;
-  gap: 60px;
-  border-radius: var(--radius);
-  background: var(--light);
+  justify-content: space-between;
+
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--line);
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--gray);
 }
 
-.vinyl {
-  flex: 0 0 250px;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background: var(--black);
-  display: grid;
-  place-items: center;
-  box-shadow: 0 15px 30px rgba(0,0,0,.15);
-}
-
-.vinyl-center {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  background: var(--blue);
-  color: white;
-  display: grid;
-  place-items: center;
-  font-size: 25px;
+.song-decoration span:first-child {
+  font-size: 30px;
+  color: var(--blue-dark);
 }
 
 .song-label {
-  color: var(--blue);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
+  margin-top: 70px;
 
-.song-info h3 {
-  margin-top: 10px;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 42px;
-  letter-spacing: -2px;
-}
-
-.song-info p {
-  margin-top: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
   color: var(--gray);
 }
 
-.song-note {
-  max-width: 850px;
-  margin: 20px auto;
+.song-box h2 {
+  margin-top: 15px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(38px, 7vw, 65px);
+  line-height: 1;
+  letter-spacing: -3px;
+}
+
+.song-box > p:not(.song-label) {
+  margin-top: 17px;
+
   color: var(--gray);
-  font-size: 11px;
+  font-size: 13px;
 }
 
+.song-meta {
+  margin-top: 45px;
 
-/* ================= BIRTHDAY ================= */
-
-.birthday-list {
-  max-width: 850px;
-  margin: auto;
-  display: grid;
-  gap: 12px;
-}
-
-.birthday-card {
-  padding: 25px 30px;
   display: flex;
-  align-items: center;
-  gap: 20px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: white;
-}
+  justify-content: space-between;
 
-.birthday-symbol {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--blue-light);
-  color: var(--blue);
-  font-weight: 700;
-}
-
-.birthday-name {
-  flex: 1;
-}
-
-.birthday-name h3 {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 21px;
-}
-
-.birthday-name p {
+  font-size: 10px;
   color: var(--gray);
-  font-size: 12px;
-}
-
-.dday {
-  color: var(--blue);
-  font-weight: 700;
 }
 
 
 /* ================= QUIZ ================= */
 
-.quiz-box,
-.quiz-result {
-  max-width: 750px;
-  margin: auto;
-  padding: 45px;
-  border-radius: var(--radius);
-  background: var(--light);
+.quiz-box {
+  width: min(760px, calc(100% - 40px));
+  margin: 15px auto 140px;
+
+  padding: 42px;
+
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 20px;
 }
 
-.quiz-progress {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 11px;
+.quiz-progress > span {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
   color: var(--gray);
 }
 
-.progress-line {
-  flex: 1;
+.progress-bar {
+  width: 100%;
   height: 4px;
-  background: var(--line);
+
+  margin-top: 12px;
+
+  background: var(--blue-light);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-#progressBar {
+.progress-bar span {
+  display: block;
   width: 20%;
   height: 100%;
-  background: var(--blue);
-  transition: width .3s;
+
+  background: var(--blue-dark);
+
+  transition: width 0.3s ease;
 }
 
-.quiz-box h3 {
-  margin-top: 55px;
+.quiz-category {
+  margin-top: 65px;
+
   font-family: "Space Grotesk", sans-serif;
-  font-size: 31px;
-  line-height: 1.25;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  color: var(--blue-dark);
 }
 
-.answers {
-  margin-top: 30px;
+.quiz-box h2 {
+  margin-top: 12px;
+
+  font-size: clamp(25px, 4vw, 37px);
+  letter-spacing: -1.3px;
+}
+
+.quiz-answers {
+  margin-top: 35px;
+
   display: grid;
-  gap: 10px;
+  gap: 9px;
 }
 
-.answer-button {
-  padding: 18px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
+.quiz-answer {
+  width: 100%;
+
+  padding: 17px 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
   text-align: left;
-  background: white;
-  transition: .2s;
+
+  border: 1px solid var(--line);
+  border-radius: 10px;
+
+  font-size: 14px;
+
+  transition: 0.2s ease;
 }
 
-.answer-button:hover {
-  border-color: var(--blue);
-  color: var(--blue);
-  transform: translateX(4px);
+.quiz-answer:hover {
+  border-color: var(--blue-dark);
+  background: var(--blue-light);
+}
+
+.answer-number {
+  width: 26px;
+  height: 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: var(--blue-light);
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.quiz-answer.correct {
+  background: #dff3e7;
+  border-color: #8bc9a2;
+}
+
+.quiz-answer.wrong {
+  background: #f8e5e5;
+  border-color: #d99a9a;
 }
 
 .quiz-result {
-  display: none;
   text-align: center;
+  padding: 45px 0 10px;
 }
 
-.result-score {
-  margin: 25px 0;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 90px;
-  line-height: 1;
-}
+.quiz-result strong {
+  display: block;
 
-.result-score small {
-  font-size: 20px;
-  color: var(--gray);
-}
-
-.quiz-result h3 {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 30px;
-}
-
-.quiz-result p {
   margin-top: 10px;
-  color: var(--gray);
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 80px;
+  line-height: 1;
+  color: var(--blue-dark);
+}
+
+.quiz-result h2 {
+  margin-top: 15px;
 }
 
 
 /* ================= ARCHIVE ================= */
 
 .archive-grid {
-  max-width: 1120px;
-  margin: auto;
-  padding: 0 30px;
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto 140px;
+
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
 }
 
 .archive-card {
-  min-height: 350px;
-  padding: 30px;
+  min-height: 340px;
+
+  padding: 28px;
+
+  position: relative;
+
+  background: var(--white);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--light);
+  border-radius: 18px;
+
+  transition: 0.2s ease;
 }
 
-.archive-card > span {
-  color: var(--blue);
-  font-size: 11px;
-  letter-spacing: 2px;
-  font-weight: 700;
+.archive-card:hover {
+  transform: translateY(-5px);
+  background: var(--blue-light);
 }
 
-.archive-symbol {
-  margin-top: 55px;
+.archive-date {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+
   font-family: "Space Grotesk", sans-serif;
-  font-size: 60px;
-  color: var(--blue);
+  font-size: 10px;
+  color: var(--gray);
 }
 
-.archive-card h3 {
+.archive-icon {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--line);
+  border-radius: 50%;
+
+  font-size: 25px;
+  color: var(--blue-dark);
+}
+
+.archive-category {
+  margin-top: 65px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: var(--gray);
+}
+
+.archive-card h2 {
+  margin-top: 8px;
+
   font-family: "Space Grotesk", sans-serif;
   font-size: 27px;
+  letter-spacing: -1px;
 }
 
-.archive-card p {
-  color: var(--gray);
-  margin-top: 8px;
-}
+.archive-card > p:last-child {
+  margin-top: 9px;
 
-.archive-card button {
-  margin-top: 20px;
-  color: var(--blue);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.archive-message {
-  max-width: 1120px;
-  margin: 25px auto 0;
-  padding: 18px 30px;
   color: var(--gray);
   font-size: 13px;
-  display: none;
+}
+
+
+/* ================= BIRTHDAY ================= */
+
+.birthday-box {
+  width: min(820px, calc(100% - 40px));
+  margin: 10px auto 140px;
+
+  padding: 55px;
+
+  text-align: center;
+
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+}
+
+.birthday-label {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  color: var(--gray);
+}
+
+.birthday-box h2 {
+  margin-top: 12px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 55px;
+  letter-spacing: -2px;
+}
+
+.birthday-box > p:nth-child(3) {
+  margin-top: 3px;
+  color: var(--blue-dark);
+}
+
+.countdown {
+  margin-top: 55px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.countdown div {
+  padding: 25px 10px;
+  border-right: 1px solid var(--line);
+}
+
+.countdown div:last-child {
+  border-right: 0;
+}
+
+.countdown strong {
+  display: block;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 38px;
+}
+
+.countdown span {
+  display: block;
+
+  margin-top: 5px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: var(--gray);
+}
+
+.birthday-list {
+  margin-top: 35px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.birthday-list div {
+  padding: 13px;
+
+  display: flex;
+  justify-content: space-between;
+
+  border: 1px solid var(--line);
+  border-radius: 8px;
+
+  font-size: 12px;
+}
+
+.birthday-list strong {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+
+/* ================= MY DOOR ================= */
+
+.mydoor-box {
+  width: min(700px, calc(100% - 40px));
+  margin: 15px auto 40px;
+
+  padding: 70px 40px;
+
+  text-align: center;
+
+  background: var(--blue-light);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+}
+
+.mydoor-mark {
+  display: flex;
+  justify-content: center;
+}
+
+.mydoor-mark .logo-mark {
+  width: 55px;
+  height: 65px;
+
+  border-width: 4px;
+}
+
+.mydoor-label {
+  margin-top: 45px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--gray);
+}
+
+.mydoor-box h2 {
+  margin-top: 12px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(38px, 7vw, 65px);
+  letter-spacing: -3px;
+}
+
+.mydoor-box > p:nth-of-type(2) {
+  margin-top: 12px;
+
+  color: var(--gray);
+  font-size: 13px;
+}
+
+.mydoor-note {
+  width: min(700px, calc(100% - 40px));
+  margin: 0 auto 140px;
+
+  font-size: 11px;
+  color: var(--gray);
+  text-align: center;
+}
+
+.mydoor-note span {
+  margin-right: 8px;
+
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--blue-dark);
 }
 
 
 /* ================= FOOTER ================= */
 
 .footer {
-  position: relative;
-  padding: 65px 30px;
-  text-align: center;
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+
+  padding: 45px 0 30px;
+
   border-top: 1px solid var(--line);
+}
+
+.footer-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .footer-logo {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 23px;
+  font-size: 18px;
   font-weight: 700;
 }
 
-.footer p {
-  margin-top: 10px;
+.footer-top p {
+  margin-top: 6px;
+
+  font-size: 11px;
   color: var(--gray);
-  font-size: 12px;
 }
 
-.top-button {
-  position: absolute;
-  right: 30px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  font-size: 22px;
+.footer-top button {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+
+.footer-bottom {
+  margin-top: 55px;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--gray);
 }
 
 
-/* ================= MOBILE ================= */
+/* ================= UTILITIES ================= */
 
-@media (max-width: 760px) {
+.hidden {
+  display: none !important;
+}
 
-  .header-inner {
-    height: 70px;
-    padding: 0 20px;
-  }
 
-  .logo {
-    font-size: 18px;
-  }
+/* ================= TABLET ================= */
 
-  .logo-door {
-    width: 27px;
-    height: 27px;
+@media (max-width: 900px) {
+
+  .desktop-nav {
+    display: none;
   }
 
   .menu-button {
     display: flex;
   }
 
-  .nav {
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    padding: 20px;
-    background: white;
-    border-bottom: 1px solid var(--line);
-    display: none;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .nav.open {
+  .mobile-nav {
     display: flex;
+    flex-direction: column;
+
+    max-height: 0;
+    overflow: hidden;
+
+    background: var(--bg);
+
+    transition: max-height 0.35s ease;
   }
 
-  .nav button {
-    padding: 16px 5px;
+  .mobile-nav.open {
+    max-height: 500px;
+    border-top: 1px solid var(--line);
+  }
+
+  .mobile-nav button {
+    width: calc(100% - 40px);
+    margin: 0 auto;
+
+    padding: 18px 0;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
     text-align: left;
+
     border-bottom: 1px solid var(--line);
+
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
   }
 
-  .hero {
-    padding: 115px 20px 100px;
-  }
+  .mobile-nav button span {
+    width: 25px;
 
-  .hero-label {
-    font-size: 12px;
-    letter-spacing: 2.5px;
-  }
-
-  .hero h1 {
-    font-size: clamp(65px, 20vw, 100px);
-    letter-spacing: -5px;
-  }
-
-  .hero-description {
-    font-size: 16px;
-  }
-
-  .primary-button {
-    width: 100%;
-    max-width: 320px;
-  }
-
-  .section {
-    padding: 70px 20px;
-  }
-
-  .today {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .today h2 {
-    font-size: 48px;
-    letter-spacing: -3px;
-    margin-bottom: 35px;
+    font-size: 9px;
+    color: var(--gray);
   }
 
   .today-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .feature-card {
-    min-height: 275px;
-  }
-
-  .card-icon {
-    margin-top: 30px;
-  }
-
-  .menu-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .menu-card {
-    min-height: 180px;
-  }
-
-  .menu-number {
-    margin-bottom: 35px;
-  }
-
-  .page-header {
-    padding: 70px 20px 40px;
-  }
-
-  .page-header h2 {
-    font-size: 53px;
-    letter-spacing: -3px;
-  }
-
-  .member-grid {
     grid-template-columns: 1fr 1fr;
-    padding: 0 20px;
+  }
+
+  .quiz-feature {
+    grid-column: 1 / -1;
+    min-height: 280px;
+  }
+
+  .members-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+  .header-inner {
+    width: calc(100% - 28px);
+    height: 64px;
+  }
+
+  .logo {
+    font-size: 17px;
+    gap: 7px;
+  }
+
+  .logo-mark {
+    width: 18px;
+    height: 22px;
+  }
+
+  main {
+    padding-top: 64px;
+  }
+
+  .page {
+    min-height: calc(100vh - 64px);
+  }
+
+
+  /* HERO */
+
+  .hero {
+    width: calc(100% - 28px);
+    min-height: calc(100vh - 64px);
+
+    padding: 28px 0 24px;
+  }
+
+  .hero-top {
+    font-size: 8px;
+  }
+
+  .hero-content {
+    padding: 40px 0;
+  }
+
+  .hero h1 {
+    margin-top: 18px;
+
+    font-size: clamp(65px, 19vw, 105px);
+    letter-spacing: -4px;
+  }
+
+  .hero h1 span {
+    margin-left: 0;
+  }
+
+  .hero-copy {
+    margin-top: 35px;
+    font-size: 15px;
+  }
+
+  .primary-button {
+    min-height: 46px;
+    padding: 0 18px;
+    font-size: 10px;
+  }
+
+  .hero-bottom {
+    font-size: 8px;
+  }
+
+  .scroll-line {
+    width: 60px;
+  }
+
+
+  /* SECTIONS */
+
+  .section {
+    width: calc(100% - 28px);
+    padding: 85px 0;
+  }
+
+  .section-heading {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .section-heading h2 {
+    margin-top: 12px;
+
+    font-size: 43px;
+    letter-spacing: -2px;
+  }
+
+  .section-note {
+    margin-top: 20px;
+    text-align: left;
+    font-size: 12px;
+  }
+
+
+  /* TODAY */
+
+  .today-grid {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
   }
 
+  .feature-card {
+    min-height: 245px;
+    padding: 21px;
+  }
+
+  .feature-icon {
+    margin-top: 27px;
+
+    width: 45px;
+    height: 45px;
+
+    font-size: 20px;
+  }
+
+  .feature-label {
+    margin-top: 17px;
+  }
+
+  .feature-card h3 {
+    font-size: 22px;
+  }
+
+  .feature-description {
+    font-size: 12px;
+  }
+
+  .feature-arrow {
+    right: 21px;
+    bottom: 19px;
+  }
+
+  .quiz-feature {
+    min-height: 245px;
+  }
+
+
+  /* MENU */
+
+  .door-menu {
+    padding-top: 0;
+  }
+
+  .menu-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .menu-card {
+    min-height: 92px;
+    padding: 19px;
+
+    grid-template-columns: 38px 1fr 25px;
+  }
+
+  .menu-card strong {
+    font-size: 16px;
+  }
+
+
+  /* CLOSING */
+
+  .closing-section {
+    width: calc(100% - 28px);
+    padding: 85px 0 110px;
+  }
+
+  .closing-section h2 {
+    font-size: 55px;
+    letter-spacing: -3px;
+  }
+
+
+  /* PAGE HERO */
+
+  .page-hero {
+    width: calc(100% - 28px);
+    padding: 85px 0 45px;
+  }
+
+  .page-hero h1 {
+    font-size: 63px;
+    letter-spacing: -3px;
+  }
+
+  .page-hero p:last-child {
+    font-size: 13px;
+  }
+
+
+  /* MEMBERS */
+
+  .members-grid {
+    width: calc(100% - 28px);
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
   .member-card {
-    min-height: 240px;
-    padding: 20px;
+    min-height: 250px;
+    padding: 17px;
   }
 
   .member-symbol {
     width: 55px;
     height: 55px;
-    margin-bottom: 35px;
+    font-size: 21px;
   }
 
-  .member-card h3 {
-    font-size: 25px;
+  .member-card strong {
+    margin-top: 48px;
+    font-size: 23px;
   }
 
-  .member-select {
+  .member-card small {
+    font-size: 8px;
+  }
+
+  .member-number,
+  .member-birthday {
+    font-size: 8px;
+  }
+
+  .member-number {
+    top: 17px;
+    right: 17px;
+  }
+
+  .member-birthday {
+    bottom: 17px;
+    right: 17px;
+  }
+
+  .member-hint {
+    width: calc(100% - 28px);
+    margin-bottom: 85px;
     font-size: 10px;
   }
 
-  .mydoor-box {
-    margin: 0 20px;
-    padding: 20px;
+
+  /* SONG */
+
+  .song-box {
+    width: calc(100% - 28px);
+    margin-bottom: 90px;
+
+    padding: 30px 21px;
   }
 
-  .favorite-display {
-    min-height: 280px;
+  .song-label {
+    margin-top: 45px;
   }
 
-  .song-feature {
-    margin: 0 20px;
-    padding: 30px;
-    flex-direction: column;
-    text-align: center;
-    gap: 30px;
+  .song-box h2 {
+    font-size: 43px;
   }
 
-  .vinyl {
-    width: 190px;
-    height: 190px;
-    flex-basis: 190px;
+  .song-meta {
+    margin-top: 30px;
   }
 
-  .song-info h3 {
-    font-size: 34px;
+
+  /* QUIZ */
+
+  .quiz-box {
+    width: calc(100% - 28px);
+    margin-bottom: 90px;
+
+    padding: 25px 20px;
   }
 
-  .birthday-list {
-    margin: 0 20px;
+  .quiz-category {
+    margin-top: 45px;
   }
 
-  .birthday-card {
-    padding: 18px;
-  }
-
-  .birthday-symbol {
-    width: 45px;
-    height: 45px;
-  }
-
-  .birthday-name h3 {
-    font-size: 17px;
-  }
-
-  .dday {
-    font-size: 13px;
-  }
-
-  .quiz-box,
-  .quiz-result {
-    margin: 0 20px;
-    padding: 25px;
-  }
-
-  .quiz-box h3 {
-    margin-top: 40px;
+  .quiz-box h2 {
     font-size: 25px;
   }
 
+  .quiz-answer {
+    padding: 14px;
+    font-size: 12px;
+  }
+
+  .quiz-result strong {
+    font-size: 65px;
+  }
+
+
+  /* ARCHIVE */
+
   .archive-grid {
+    width: calc(100% - 28px);
+
     grid-template-columns: 1fr;
-    padding: 0 20px;
+    gap: 9px;
+
+    margin-bottom: 90px;
   }
 
   .archive-card {
-    min-height: 280px;
+    min-height: 260px;
+    padding: 22px;
   }
 
-  .back-home {
-    margin: 55px 20px 70px;
-    padding: 0;
+  .archive-category {
+    margin-top: 50px;
   }
+
+  .archive-card h2 {
+    font-size: 23px;
+  }
+
+
+  /* BIRTHDAY */
+
+  .birthday-box {
+    width: calc(100% - 28px);
+
+    padding: 30px 17px;
+    margin-bottom: 90px;
+  }
+
+  .birthday-box h2 {
+    font-size: 45px;
+  }
+
+  .countdown {
+    margin-top: 40px;
+  }
+
+  .countdown div {
+    padding: 17px 3px;
+  }
+
+  .countdown strong {
+    font-size: 24px;
+  }
+
+  .countdown span {
+    font-size: 6px;
+  }
+
+  .birthday-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .birthday-list div {
+    font-size: 10px;
+    padding: 10px;
+  }
+
+
+  /* MY DOOR */
+
+  .mydoor-box {
+    width: calc(100% - 28px);
+
+    padding: 55px 20px;
+    margin-bottom: 25px;
+  }
+
+  .mydoor-box h2 {
+    font-size: 45px;
+  }
+
+  .mydoor-note {
+    width: calc(100% - 28px);
+    margin-bottom: 90px;
+  }
+
+
+  /* FOOTER */
 
   .footer {
-    padding: 55px 20px;
+    width: calc(100% - 28px);
+    padding-top: 30px;
   }
 
-  .top-button {
-    position: static;
-    transform: none;
-    margin-top: 25px;
+  .footer-logo {
+    font-size: 15px;
   }
+
+  .footer-top p {
+    font-size: 9px;
+  }
+
+  .footer-top button {
+    font-size: 8px;
+  }
+
+  .footer-bottom {
+    margin-top: 35px;
+    font-size: 7px;
+  }
+
+}
+
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 380px) {
+
+  .hero h1 {
+    font-size: 62px;
+  }
+
+  .page-hero h1 {
+    font-size: 55px;
+  }
+
+  .members-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .member-card {
+    min-height: 220px;
+  }
+
 }
