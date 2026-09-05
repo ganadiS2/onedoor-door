@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ONEDOOR:DOOR</title>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+
+<body>
+
+<div class="site">
+
+  <!-- ================= HEADER ================= -->
+
+  <header class="header">
+
+    <a href="#" class="logo" onclick="showPage('home')">
+      <span class="logo-door">▣</span>
+      ONEDOOR<span class="point">:DOOR</span>
+    </a>
+
+    <nav class="nav">
+
+      <button onclick="showPage('home')">
+        HOME
+      </button>
+
+      <button onclick="showPage('members')">
+        MEMBERS
+      </button>
+
+      <button onclick="showPage('song')">
+        SONG
+      </button>
+
+      <button onclick="showPage('quiz')">
+        QUIZ
+      </button>
+
+      <button onclick="showPage('archive')">
+        ARCHIVE
+      </button>
+
+      <button onclick="showPage('birthday')">
+        BIRTHDAY
+      </button>
+
+      <button onclick="showPage('mydoor')">
+        MY DOOR
+      </button>
+
+    </nav>
+
+    <button class="menu" onclick="toggleMenu()">
+      ☰
+    </button>
+
+  </header>
+
+
+
+  <!-- ================= MAIN ================= -->
+
+  <main>
+
+
+    <!-- HOME -->
+
+    <section id="home" class="page active">
+
+      <div class="hero">
+
+        <p class="eyebrow">
+          WELCOME, ONEDOOR
+        </p>
+
+        <h1>
+          OPEN<br>
+          <span>THE DOOR.</span>
+        </h1>
+
+        <p class="intro">
+          원도어를 위한 작은 공간.<br>
+          오늘도 문을 열고 들어와요.
+        </p>
+
+        <button
+          class="enter-btn"
+          onclick="showPage('mydoor')">
+
+          ENTER THE DOOR →
+
+        </button>
+
+      </div>
+
+
+
+      <!-- TODAY -->
+
+      <div class="today-section">
+
+        <div class="section-heading">
+
+          <p class="eyebrow">
+            TODAY
+          </p>
+
+          <h2>
+            What's behind<br>
+            the door?
+          </h2>
+
+        </div>
+
+
+        <div class="today-grid">
+
+          <div
+            class="today-card"
+            onclick="showPage('song')">
+
+            <span class="today-icon">
+              ♪
+            </span>
+
+            <small>
+              TODAY'S SONG
+            </small>
+
+            <h3>
+              오늘의 노래
+            </h3>
+
+            <p>
+              오늘은 어떤 노래를 들어볼까요?
+            </p>
+
+            <span class="card-arrow">
+              →
+            </span>
+
+          </div>
+
+
+
+          <div
+            class="today-card"
+            onclick="showPage('birthday')">
+
+            <span class="today-icon">
+              ○
+            </span>
+
+            <small>
+              COUNTDOWN
+            </small>
+
+            <h3>
+              Birthday
+            </h3>
+
+            <p>
+              다음 생일까지 얼마나 남았을까?
+            </p>
+
+            <span class="card-arrow">
+              →
+            </span>
+
+          </div>
+
+
+
+          <div
+            class="today-card"
+            onclick="showPage('quiz')">
+
+            <span class="today-icon">
+              ?
+            </span>
+
+            <small>
+              ONEDOOR TEST
+            </small>
+
+            <h3>
+              원도어 퀴즈
+            </h3>
+
+            <p>
+              나의 원도어력을 테스트해보자.
+            </p>
+
+            <span class="card-arrow">
+              →
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- QUICK MENU -->
+
+      <div class="quick-section">
+
+        <p class="eyebrow">
+          DOOR MENU
+        </p>
+
+        <div class="quick-grid">
+
+          <button onclick="showPage('members')">
+            <span>01</span>
+            MEMBERS
+            <b>→</b>
+          </button>
+
+          <button onclick="showPage('archive')">
+            <span>02</span>
+            ARCHIVE
+            <b>→</b>
+          </button>
+
+          <button onclick="showPage('mydoor')">
+            <span>03</span>
+            MY DOOR
+            <b>→</b>
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= MEMBERS ================= -->
+
+    <section id="members" class="page">
+
+      <div class="page-title">
+
+        <p class="eyebrow">
+          BOYNEXTDOOR
+        </p>
+
+        <h1>
+          WHO'S<br>
+          <span>YOUR DOOR?</span>
+        </h1>
+
+        <p>
+          마음에 드는 멤버를 선택해 MY DOOR에 저장해보세요.
+        </p>
+
+      </div>
+
+
+
+      <div class="members-grid">
+
+
+        <div class="member-card"
+             onclick="selectMember('성호')">
+
+          <span class="member-num">
+            01
+          </span>
+
+          <div class="member-symbol">
+            S
+          </div>
+
+          <h2>성호</h2>
+
+          <p>
+            09.04
+          </p>
+
+          <button>
+            CHOOSE →
+          </button>
+
+        </div>
+
+
+
+        <div class="member-card"
+             onclick="selectMember('리우')">
+
+          <span class="member-num">
+            02
+          </span>
+
+          <div class="member-symbol">
+            R
+          </div>
+
+          <h2>리우</h2>
+
+          <p>
+            10.22
+          </p>
+
+          <button>
+            CHOOSE →
+          </button>
+
+        </div>
+
+
+
+        <div class="member-card"
+             onclick="selectMember('재현')">
+
+          <span class="member-num">
+            03
+          </span>
+
+          <div class="member-symbol">
+            J
+          </div>
+
+          <h2>재현</h2>
+
+          <p>
+            12.04
+          </p>
+
+          <button>
+            CHOOSE →
+          </button>
+
+        </div>
+
+
+
+        <div class="member-card"
+             onclick="selectMember('태산')">
+
+          <span class="member-num">
+            04
+          </span>
+
+          <div class="member-symbol">
+            T
+          </div>
+
+          <h2>태산</h2>
+
+          <p>
+            08.10
+          </p>
+
+          <button>
+            CHOOSE →
+          </button>
+
+        </div>
+
+
+
+        <div class="member-card"
+             onclick="selectMember('이한')">
+
+          <span class="member-num">
+            05
+          </span>
+
+          <div class="member-symbol">
+            L
+          </div>
+
+          <h2>이한</h2>
+
+          <p>
+            10.20
+          </p>
+
+          <button>
+            CHOOSE →
+          </button>
+
+        </div>
+
+
+
+        <div class="member-card"
+             onclick="selectMember('운학')">
+
+          <span class="member-num">
+            06
+          </span>
+
+          <div class="member-symbol">
+            W
+          </div>
+
+          <h2>운학</h2>
+
+          <p>
+            11.29
+          </p>
+
+          <button>
+            CHOOSE →
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= MY DOOR ================= -->
+
+    <section id="mydoor" class="page">
+
+      <div class="page-title">
+
+        <p class="eyebrow">
+          PERSONAL DOOR
+        </p>
+
+        <h1>
+          MY<br>
+          <span>DOOR.</span>
+        </h1>
+
+        <p>
+          내가 선택한 멤버가 이곳에 저장됩니다.
+        </p>
+
+      </div>
+
+
+
+      <div class="mydoor-box">
+
+        <div class="mydoor-symbol">
+          🔑
+        </div>
+
+        <p class="eyebrow">
+          MY MEMBER
+        </p>
+
+        <h2 id="myMember">
+          아직 선택하지 않았어요.
+        </h2>
+
+        <p id="myMemberText">
+          MEMBERS에서 나의 멤버를 선택해보세요.
+        </p>
+
+        <button
+          class="enter-btn"
+          onclick="showPage('members')">
+
+          CHOOSE MY MEMBER
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= SONG ================= -->
+
+    <section id="song" class="page">
+
+      <div class="page-title">
+
+        <p class="eyebrow">
+          DOOR PLAYER
+        </p>
+
+        <h1>
+          TODAY'S<br>
+          <span>SONG.</span>
+        </h1>
+
+        <p>
+          버튼을 눌러 오늘의 노래를 뽑아보세요.
+        </p>
+
+      </div>
+
+
+
+      <div class="song-box">
+
+        <div class="record">
+          ◉
+        </div>
+
+        <small>
+          TODAY'S PICK
+        </small>
+
+        <h2 id="songTitle">
+          ???
+        </h2>
+
+        <p id="songMessage">
+          오늘의 노래를 뽑아보세요.
+        </p>
+
+        <button
+          class="enter-btn"
+          onclick="randomSong()">
+
+          RANDOM PICK
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= QUIZ ================= -->
+
+    <section id="quiz" class="page">
+
+      <div class="page-title">
+
+        <p class="eyebrow">
+          ONEDOOR TEST
+        </p>
+
+        <h1>
+          HOW MUCH<br>
+          <span>ONEDOOR?</span>
+        </h1>
+
+        <p>
+          나의 원도어력을 테스트해보세요.
+        </p>
+
+      </div>
+
+
+
+      <div class="quiz-box">
+
+
+        <div id="quizStart">
+
+          <div class="big-icon">
+            ?
+          </div>
+
+          <h2>
+            나의 원도어력은?
+          </h2>
+
+          <p>
+            총 5문제입니다.
+          </p>
+
+          <button
+            class="enter-btn"
+            onclick="startQuiz()">
+
+            START QUIZ
+
+          </button>
+
+        </div>
+
+
+
+        <div id="quizArea" class="hidden">
+
+          <div class="progress">
+            <span id="questionNumber">
+              1 / 5
+            </span>
+          </div>
+
+          <h2 id="question"></h2>
+
+          <div
+            id="answers"
+            class="answers">
+          </div>
+
+        </div>
+
+
+
+        <div id="quizResult" class="hidden">
+
+          <div class="big-icon">
+            ✓
+          </div>
+
+          <small>
+            YOUR RESULT
+          </small>
+
+          <h2 id="resultTitle"></h2>
+
+          <div
+            id="resultScore"
+            class="score">
+          </div>
+
+          <p id="resultMessage"></p>
+
+          <button
+            class="enter-btn"
+            onclick="startQuiz()">
+
+            TRY AGAIN
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= ARCHIVE ================= -->
+
+    <section id="archive" class="page">
+
+      <div class="page-title">
+
+        <p class="eyebrow">
+          DOOR ARCHIVE
+        </p>
+
+        <h1>
+          KEEP THE<br>
+          <span>MEMORIES.</span>
+        </h1>
+
+        <p>
+          보넥도와 원도어의 시간을 모아두는 공간.
+        </p>
+
+      </div>
+
+
+
+      <div class="archive-grid">
+
+
+        <div class="archive-card">
+
+          <span>
+            01
+          </span>
+
+          <h2>
+            ALBUM
+          </h2>
+
+          <p>
+            앨범과 수록곡을 한눈에.
+          </p>
+
+          <button>
+            VIEW →
+          </button>
+
+        </div>
+
+
+
+        <div class="archive-card">
+
+          <span>
+            02
+          </span>
+
+          <h2>
+            CONTENT
+          </h2>
+
+          <p>
+            공식 콘텐츠를 찾아가는 공간.
+          </p>
+
+          <button>
+            VIEW →
+          </button>
+
+        </div>
+
+
+
+        <div class="archive-card">
+
+          <span>
+            03
+          </span>
+
+          <h2>
+            MEMORIES
+          </h2>
+
+          <p>
+            원도어가 기억하고 싶은 순간.
+          </p>
+
+          <button>
+            VIEW →
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= BIRTHDAY ================= -->
+
+    <section id="birthday" class="page">
+
+      <div class="page-title">
+
+        <p class="eyebrow">
+          BIRTHDAY COUNTDOWN
+        </p>
+
+        <h1>
+          BIRTHDAY<br>
+          <span>DOOR.</span>
+        </h1>
+
+        <p>
+          멤버들의 생일까지 카운트다운.
+        </p>
+
+      </div>
+
+
+
+      <div class="birthday-grid">
+
+
+        <div class="birthday-card">
+
+          <small>
+            01
+          </small>
+
+          <h2>성호</h2>
+
+          <p>
+            09.04
+          </p>
+
+          <strong id="dday-sungho">
+            D-DAY
+          </strong>
+
+        </div>
+
+
+
+        <div class="birthday-card">
+
+          <small>
+            02
+          </small>
+
+          <h2>리우</h2>
+
+          <p>
+            10.22
+          </p>
+
+          <strong id="dday-riwoo">
+            D-DAY
+          </strong>
+
+        </div>
+
+
+
+        <div class="birthday-card">
+
+          <small>
+            03
+          </small>
+
+          <h2>재현</h2>
+
+          <p>
+            12.04
+          </p>
+
+          <strong id="dday-jaehyun">
+            D-DAY
+          </strong>
+
+        </div>
+
+
+
+        <div class="birthday-card">
+
+          <small>
+            04
+          </small>
+
+          <h2>태산</h2>
+
+          <p>
+            08.10
+          </p>
+
+          <strong id="dday-taesan">
+            D-DAY
+          </strong>
+
+        </div>
+
+
+
+        <div class="birthday-card">
+
+          <small>
+            05
+          </small>
+
+          <h2>이한</h2>
+
+          <p>
+            10.20
+          </p>
+
+          <strong id="dday-leehan">
+            D-DAY
+          </strong>
+
+        </div>
+
+
+
+        <div class="birthday-card">
+
+          <small>
+            06
+          </small>
+
+          <h2>운학</h2>
+
+          <p>
+            11.29
+          </p>
+
+          <strong id="dday-woonhak">
+            D-DAY
+          </strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <b>
+      🚪 ONEDOOR:DOOR
+    </b>
+
+    <p>
+      Unofficial fan-made website for ONEDOOR
+    </p>
+
+  </footer>
+
+
+</div>
+
+
+<script src="./script.js"></script>
+
+</body>
+</html>
