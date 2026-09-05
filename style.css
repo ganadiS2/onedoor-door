@@ -1,676 +1,666 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
-
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-
-:root {
-  --blue: #a8dce9;
-  --blue-dark: #4d9caf;
-  --light-blue: #effbfe;
-  --black: #172126;
-  --gray: #718086;
-  --line: #dce9ed;
-  --white: #ffffff;
-}
-
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: #eaf8fb;
-  color: var(--black);
-}
-
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
-
-
-.site {
-  max-width: 1200px;
-  min-height: 100vh;
-  margin: auto;
-  background: white;
-}
-
-
-/* =====================
-   HEADER
-===================== */
-
-
-.header {
-  height: 78px;
-  padding: 0 45px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  border-bottom: 1px solid var(--line);
-}
-
-
-.logo {
-  text-decoration: none;
-  color: var(--black);
-
-  font-family: 'Space Grotesk';
-  font-weight: 700;
-  font-size: 20px;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-
-.point {
-  color: var(--blue-dark);
-}
-
-
-.nav {
-  display: flex;
-  gap: 5px;
-}
-
-
-.nav button {
-  border: none;
-  background: transparent;
-
-  padding: 10px 13px;
-
-  font-size: 11px;
-  font-weight: 700;
-
-  color: var(--gray);
-}
-
-
-.nav button:hover {
-  color: var(--blue-dark);
-}
-
-
-.menu {
-  display: none;
-
-  border: none;
-  background: transparent;
-
-  font-size: 23px;
-}
-
-
-/* =====================
-   PAGE
-===================== */
-
-
-.page {
-  display: none;
-  padding: 65px 55px 90px;
-}
-
-
-.page.active {
-  display: block;
-}
-
-
-/* =====================
-   HOME
-===================== */
-
-
-.hero {
-  text-align: center;
-  padding: 65px 20px 75px;
-}
-
-
-.eyebrow {
-  color: var(--blue-dark);
-
-  font-size: 11px;
-  font-weight: 700;
-
-  letter-spacing: 2px;
-}
-
-
-.hero h1 {
-  font-family: 'Space Grotesk';
-
-  font-size: clamp(65px, 10vw, 110px);
-  line-height: .87;
-
-  letter-spacing: -6px;
-
-  margin: 20px 0 30px;
-}
-
-
-.hero h1 span,
-.page-title h1 span {
-  color: var(--blue-dark);
-}
-
-
-.intro {
-  color: var(--gray);
-
-  line-height: 1.7;
-
-  margin-bottom: 30px;
-}
-
-
-.enter-btn {
-  border: none;
-  border-radius: 50px;
-
-  padding: 15px 25px;
-
-  background: var(--black);
-  color: white;
-
-  font-size: 12px;
-  font-weight: 700;
-
-  transition: .2s;
-}
-
-
-.enter-btn:hover {
-  background: var(--blue-dark);
-  transform: translateY(-3px);
-}
-
-
-/* =====================
-   CARDS
-===================== */
-
-
-.cards {
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 18px;
-}
-
-
-.card {
-  position: relative;
-
-  min-height: 225px;
-
-  padding: 30px;
-
-  border-radius: 18px;
-
-  cursor: pointer;
-
-  transition: .2s;
-}
-
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-
-.card.blue {
-  background: #e7f9fc;
-}
-
-
-.card.gray {
-  background: #f3f5f6;
-}
-
-
-.card.green {
-  background: #e9f5ef;
-}
-
-
-.icon {
-  font-size: 30px;
-  margin-bottom: 25px;
-}
-
-
-.card small {
-  color: var(--blue-dark);
-
-  font-size: 10px;
-  font-weight: 700;
-
-  letter-spacing: 1.5px;
-}
-
-
-.card h2 {
-  font-family: 'Space Grotesk';
-
-  font-size: 25px;
-
-  margin: 8px 0;
-}
-
-
-.card p {
-  color: var(--gray);
-
-  font-size: 13px;
-}
-
-
-.card b {
-  position: absolute;
-
-  right: 25px;
-  bottom: 20px;
-
-  font-size: 22px;
-}
-
-
-/* =====================
-   PAGE TITLE
-===================== */
-
-
-.page-title {
-  text-align: center;
-
-  margin-bottom: 45px;
-}
-
-
-.page-title h1 {
-  font-family: 'Space Grotesk';
-
-  font-size: clamp(50px, 8vw, 85px);
-
-  line-height: .9;
-
-  letter-spacing: -4px;
-
-  margin: 17px 0;
-}
-
-
-/* =====================
-   SONG
-===================== */
-
-
-.song-box,
-.quiz-box {
-  max-width: 620px;
-
-  margin: auto;
-
-  padding: 55px 30px;
-
-  text-align: center;
-
-  background: var(--light-blue);
-
-  border-radius: 25px;
-}
-
-
-.record {
-  font-size: 80px;
-
-  margin-bottom: 20px;
-
-  animation: rotate 8s linear infinite;
-}
-
-
-@keyframes rotate {
-
-  from {
-    transform: rotate(0);
+/* =========================================
+   ONEDOOR :DOOR v2.0
+========================================= */
+
+
+/* ================= MEMBERS ================= */
+
+const members = [
+  {
+    name: "성호",
+    english: "SUNGHO",
+    birthday: "2003-09-04",
+    symbol: "S"
+  },
+  {
+    name: "리우",
+    english: "RIWOO",
+    birthday: "2003-10-22",
+    symbol: "R"
+  },
+  {
+    name: "재현",
+    english: "JAEHYUN",
+    birthday: "2003-12-04",
+    symbol: "J"
+  },
+  {
+    name: "태산",
+    english: "TAESAN",
+    birthday: "2004-08-10",
+    symbol: "T"
+  },
+  {
+    name: "이한",
+    english: "LEEHAN",
+    birthday: "2004-10-20",
+    symbol: "L"
+  },
+  {
+    name: "운학",
+    english: "WOONHAK",
+    birthday: "2006-11-29",
+    symbol: "W"
+  }
+];
+
+
+/* ================= PAGE ================= */
+
+function showPage(pageId) {
+
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  const target = document.getElementById(pageId);
+
+  if (target) {
+    target.classList.add("active");
   }
 
-  to {
-    transform: rotate(360deg);
+  closeMobileMenu();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+  if (pageId === "quiz") {
+    startQuizIfNeeded();
   }
 
+  if (pageId === "birthday") {
+    renderBirthdays();
+  }
 }
 
 
-.song-box small,
-.quiz-box small {
-  color: var(--blue-dark);
+/* ================= MOBILE MENU ================= */
 
-  font-size: 10px;
-  font-weight: 700;
+const menuButton = document.getElementById("menuButton");
+const nav = document.getElementById("nav");
 
-  letter-spacing: 2px;
+menuButton.addEventListener("click", () => {
+  nav.classList.toggle("open");
+});
+
+function closeMobileMenu() {
+  nav.classList.remove("open");
 }
 
 
-.song-box h2 {
-  font-family: 'Space Grotesk';
+/* ================= HOME SCROLL ================= */
 
-  font-size: 34px;
+function scrollToToday() {
 
-  margin: 12px 0;
+  const today = document.querySelector(".today");
+
+  if (today) {
+    today.scrollIntoView({
+      behavior: "smooth"
+    });
+  }
 }
 
 
-.song-box p {
-  color: var(--gray);
+/* ================= MEMBERS ================= */
 
-  margin-bottom: 30px;
+function renderMembers() {
+
+  const grid = document.getElementById("memberGrid");
+
+  if (!grid) return;
+
+  grid.innerHTML = "";
+
+  members.forEach(member => {
+
+    const card = document.createElement("button");
+
+    card.className = "member-card";
+
+    card.innerHTML = `
+      <div class="member-symbol">${member.symbol}</div>
+
+      <h3>${member.name}</h3>
+
+      <p>${member.english}</p>
+
+      <div class="member-select">
+        SELECT THIS DOOR →
+      </div>
+    `;
+
+    card.addEventListener("click", () => {
+      selectMember(member);
+    });
+
+    grid.appendChild(card);
+
+  });
 }
 
 
-/* =====================
-   QUIZ
-===================== */
+/* ================= MY DOOR ================= */
 
+function selectMember(member) {
 
-.big-icon {
-  font-size: 65px;
+  localStorage.setItem(
+    "onedoorFavorite",
+    member.name
+  );
 
-  margin-bottom: 20px;
+  updateFavorite();
+
+  showPage("mydoor");
 }
 
 
-.quiz-box h2 {
-  font-family: 'Space Grotesk';
+function updateFavorite() {
 
-  font-size: 29px;
+  const favorite =
+    localStorage.getItem("onedoorFavorite");
 
-  margin-bottom: 10px;
-}
+  const display =
+    document.getElementById("favoriteDisplay");
 
+  const status =
+    document.getElementById("favoriteStatus");
 
-.quiz-box p {
-  color: var(--gray);
+  if (!display || !status) return;
 
-  margin-bottom: 25px;
-}
 
+  if (!favorite) {
 
-.progress {
-  color: var(--blue-dark);
+    status.textContent = "NOT SET";
 
-  font-size: 12px;
-  font-weight: 700;
+    display.innerHTML = `
+      <div class="favorite-empty">
 
-  margin-bottom: 25px;
-}
+        <div class="big-door">□</div>
 
+        <h3>아직 선택한 멤버가 없어요.</h3>
 
-.answers {
-  display: grid;
+        <p>
+          MEMBERS에서 나의 멤버를 선택해보세요.
+        </p>
 
-  gap: 10px;
-}
+      </div>
+    `;
 
-
-.answer {
-  border: 1px solid var(--line);
-
-  background: white;
-
-  border-radius: 12px;
-
-  padding: 15px;
-
-  font-weight: 600;
-
-  transition: .2s;
-}
-
-
-.answer:hover {
-  border-color: var(--blue-dark);
-
-  background: #f2fcfe;
-}
-
-
-.score {
-  font-family: 'Space Grotesk';
-
-  font-size: 58px;
-  font-weight: 700;
-
-  color: var(--blue-dark);
-
-  margin: 10px 0;
-}
-
-
-.hidden {
-  display: none;
-}
-
-
-/* =====================
-   BIRTHDAY
-===================== */
-
-
-.members {
-  max-width: 900px;
-
-  margin: auto;
-
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 18px;
-}
-
-
-.member {
-  text-align: center;
-
-  padding: 30px 15px;
-
-  border: 1px solid var(--line);
-
-  border-radius: 18px;
-}
-
-
-.member small {
-  color: var(--blue-dark);
-
-  font-weight: 700;
-}
-
-
-.member h2 {
-  font-family: 'Space Grotesk';
-
-  font-size: 28px;
-
-  margin: 15px 0 5px;
-}
-
-
-.member p {
-  color: var(--gray);
-
-  font-size: 12px;
-
-  margin-bottom: 18px;
-}
-
-
-.member strong {
-  display: inline-block;
-
-  padding: 7px 15px;
-
-  background: var(--light-blue);
-
-  color: var(--blue-dark);
-
-  border-radius: 30px;
-
-  font-size: 11px;
-}
-
-
-/* =====================
-   BACK
-===================== */
-
-
-.back {
-  display: block;
-
-  margin: 40px auto 0;
-
-  border: none;
-
-  background: transparent;
-
-  color: var(--gray);
-
-  font-size: 12px;
-  font-weight: 700;
-}
-
-
-.back:hover {
-  color: var(--blue-dark);
-}
-
-
-/* =====================
-   FOOTER
-===================== */
-
-
-footer {
-  padding: 30px;
-
-  text-align: center;
-
-  border-top: 1px solid var(--line);
-}
-
-
-footer b {
-  font-family: 'Space Grotesk';
-}
-
-
-footer p {
-  color: var(--gray);
-
-  font-size: 10px;
-
-  margin-top: 7px;
-}
-
-
-/* =====================
-   MOBILE
-===================== */
-
-
-@media (max-width: 700px) {
-
-  .header {
-    height: 65px;
-
-    padding: 0 20px;
+    return;
   }
 
 
-  .nav {
-    display: none;
+  const member =
+    members.find(item => item.name === favorite);
 
-    position: absolute;
+  if (!member) return;
 
-    top: 65px;
-    left: 0;
+  status.textContent = "SELECTED";
 
-    width: 100%;
 
-    background: white;
+  display.innerHTML = `
+    <div class="favorite-member">
 
-    flex-direction: column;
+      <div class="member-symbol">
+        ${member.symbol}
+      </div>
 
-    padding: 10px 20px;
+      <h3>${member.name}</h3>
 
-    z-index: 100;
+      <p>${member.english}</p>
+
+      <p style="margin-top:15px;">
+        이 문은 ${member.name}의 문이에요. 🚪
+      </p>
+
+    </div>
+  `;
+}
+
+
+/* ================= SONG ================= */
+
+const songs = [
+  {
+    title: "오늘의 노래",
+    description: "오늘은 어떤 노래를 골라볼까요?"
+  },
+  {
+    title: "BUT I LIKE YOU",
+    description: "가볍게 시작하고 싶은 날에."
+  },
+  {
+    title: "One and Only",
+    description: "오늘 하루를 조금 더 신나게."
+  },
+  {
+    title: "Serenade",
+    description: "조용히 음악을 듣고 싶은 순간에."
+  },
+  {
+    title: "Earth, Wind & Fire",
+    description: "분위기를 바꾸고 싶은 날에."
+  },
+  {
+    title: "Nice Guy",
+    description: "기분 좋은 에너지가 필요한 순간에."
+  }
+];
+
+
+function randomSong() {
+
+  const randomIndex =
+    Math.floor(Math.random() * songs.length);
+
+  const song = songs[randomIndex];
+
+  const title =
+    document.getElementById("songTitle");
+
+  const description =
+    document.getElementById("songDescription");
+
+  if (!title || !description) return;
+
+  title.textContent = song.title;
+  description.textContent = song.description;
+}
+
+
+/* ================= BIRTHDAY ================= */
+
+function getNextBirthday(dateString) {
+
+  const original =
+    new Date(dateString + "T00:00:00");
+
+  const now = new Date();
+
+  let next =
+    new Date(
+      now.getFullYear(),
+      original.getMonth(),
+      original.getDate()
+    );
+
+  if (next < now) {
+    next =
+      new Date(
+        now.getFullYear() + 1,
+        original.getMonth(),
+        original.getDate()
+      );
   }
 
+  return next;
+}
 
-  .nav.open {
-    display: flex;
+
+function getDDay(date) {
+
+  const now = new Date();
+
+  const diff =
+    date.getTime() - now.getTime();
+
+  return Math.ceil(
+    diff / (1000 * 60 * 60 * 24)
+  );
+}
+
+
+function renderBirthdays() {
+
+  const list =
+    document.getElementById("birthdayList");
+
+  if (!list) return;
+
+  list.innerHTML = "";
+
+  const sorted =
+    [...members].sort((a, b) => {
+
+      return (
+        getNextBirthday(a.birthday) -
+        getNextBirthday(b.birthday)
+      );
+
+    });
+
+
+  sorted.forEach(member => {
+
+    const next =
+      getNextBirthday(member.birthday);
+
+    const dday =
+      getDDay(next);
+
+    const month =
+      String(next.getMonth() + 1).padStart(2, "0");
+
+    const day =
+      String(next.getDate()).padStart(2, "0");
+
+
+    const card =
+      document.createElement("div");
+
+    card.className = "birthday-card";
+
+    card.innerHTML = `
+
+      <div class="birthday-symbol">
+        ${member.symbol}
+      </div>
+
+      <div class="birthday-name">
+
+        <h3>${member.name}</h3>
+
+        <p>
+          ${month}.${day}
+        </p>
+
+      </div>
+
+      <div class="dday">
+        D-${dday}
+      </div>
+
+    `;
+
+    list.appendChild(card);
+
+  });
+
+
+  updateHomeCountdown();
+}
+
+
+function updateHomeCountdown() {
+
+  const target =
+    document.getElementById("homeCountdown");
+
+  if (!target) return;
+
+  const nextDates =
+    members.map(member =>
+      getNextBirthday(member.birthday)
+    );
+
+  const nearest =
+    nextDates.sort((a, b) => a - b)[0];
+
+  const dday =
+    getDDay(nearest);
+
+  target.textContent =
+    dday === 0
+      ? "TODAY"
+      : `D-${dday}`;
+}
+
+
+/* ================= QUIZ ================= */
+
+const quizQuestions = [
+
+  {
+    question: "새로운 앨범이 나왔다. 가장 먼저 할 일은?",
+    answers: [
+      "일단 음악부터 듣는다",
+      "앨범 정보를 찾아본다",
+      "친구에게 바로 공유한다",
+      "사진부터 구경한다"
+    ],
+    correct: 0
+  },
+
+  {
+    question: "좋아하는 노래를 발견했다면?",
+    answers: [
+      "플레이리스트에 넣는다",
+      "계속 반복해서 듣는다",
+      "친구에게 추천한다",
+      "전부 다 한다"
+    ],
+    correct: 3
+  },
+
+  {
+    question: "콘텐츠를 볼 때 가장 중요한 것은?",
+    answers: [
+      "재미",
+      "멤버들의 케미",
+      "음악",
+      "모두 중요하다"
+    ],
+    correct: 3
+  },
+
+  {
+    question: "공연에서 가장 기대되는 순간은?",
+    answers: [
+      "첫 등장",
+      "좋아하는 노래",
+      "팬들과 함께하는 순간",
+      "마지막까지 전부"
+    ],
+    correct: 3
+  },
+
+  {
+    question: "나에게 ONEDOOR란?",
+    answers: [
+      "좋아하는 음악을 함께 듣는 사람들",
+      "좋은 순간을 공유하는 공간",
+      "나의 일상 속 작은 즐거움",
+      "정답 없음. 내가 정하면 된다!"
+    ],
+    correct: 3
   }
 
-
-  .nav button {
-    text-align: left;
-
-    padding: 14px;
-  }
+];
 
 
-  .menu {
-    display: block;
-  }
+let currentQuestion = 0;
+let score = 0;
+let quizStarted = false;
 
 
-  .page {
-    padding: 45px 20px 65px;
-  }
+function startQuizIfNeeded() {
 
-
-  .hero {
-    padding: 50px 10px 55px;
-  }
-
-
-  .hero h1 {
-    letter-spacing: -4px;
-  }
-
-
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
-
-  .members {
-    grid-template-columns: 1fr 1fr;
+  if (!quizStarted) {
+    startQuiz();
   }
 
 }
 
 
-@media (max-width: 430px) {
+function startQuiz() {
 
-  .members {
-    grid-template-columns: 1fr;
+  quizStarted = true;
+
+  currentQuestion = 0;
+  score = 0;
+
+  const quizBox =
+    document.getElementById("quizBox");
+
+  const result =
+    document.getElementById("quizResult");
+
+  if (quizBox) {
+    quizBox.style.display = "block";
+  }
+
+  if (result) {
+    result.style.display = "none";
+  }
+
+  showQuestion();
+
+}
+
+
+function showQuestion() {
+
+  const question =
+    quizQuestions[currentQuestion];
+
+  const number =
+    document.getElementById("quizNumber");
+
+  const text =
+    document.getElementById("questionText");
+
+  const answers =
+    document.getElementById("answers");
+
+  const progress =
+    document.getElementById("progressBar");
+
+
+  number.textContent =
+    String(currentQuestion + 1).padStart(2, "0");
+
+  text.textContent =
+    question.question;
+
+  progress.style.width =
+    `${((currentQuestion + 1) / quizQuestions.length) * 100}%`;
+
+  answers.innerHTML = "";
+
+
+  question.answers.forEach((answer, index) => {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "answer-button";
+
+    button.textContent =
+      answer;
+
+    button.addEventListener("click", () => {
+
+      if (index === question.correct) {
+        score++;
+      }
+
+      currentQuestion++;
+
+      if (currentQuestion < quizQuestions.length) {
+        showQuestion();
+      } else {
+        showResult();
+      }
+
+    });
+
+    answers.appendChild(button);
+
+  });
+
+}
+
+
+function showResult() {
+
+  const quizBox =
+    document.getElementById("quizBox");
+
+  const result =
+    document.getElementById("quizResult");
+
+  const scoreNumber =
+    document.getElementById("scoreNumber");
+
+  const title =
+    document.getElementById("resultTitle");
+
+  const text =
+    document.getElementById("resultText");
+
+
+  quizBox.style.display = "none";
+
+  result.style.display = "block";
+
+  scoreNumber.textContent =
+    score;
+
+
+  if (score === 5) {
+
+    title.textContent =
+      "DOOR MASTER 🚪";
+
+    text.textContent =
+      "원도어력이 상당하네요. 문이 활짝 열려 있습니다.";
+
+  } else if (score >= 3) {
+
+    title.textContent =
+      "TRUE ONEDOOR";
+
+    text.textContent =
+      "좋아요. 이 정도면 충분히 문 안쪽에 들어와 있어요.";
+
+  } else {
+
+    title.textContent =
+      "NEW ONEDOOR";
+
+    text.textContent =
+      "이제부터 하나씩 알아가면 돼요. 천천히 문을 열어봐요.";
+
   }
 
 }
+
+
+function restartQuiz() {
+
+  startQuiz();
+
+}
+
+
+/* ================= ARCHIVE ================= */
+
+function showArchiveMessage() {
+
+  const message =
+    document.getElementById("archiveMessage");
+
+  if (!message) return;
+
+  message.style.display = "block";
+
+}
+
+
+/* ================= INIT ================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  renderMembers();
+
+  updateFavorite();
+
+  randomSong();
+
+  renderBirthdays();
+
+});
