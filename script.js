@@ -1,629 +1,1039 @@
-/* =================================
-   PAGE NAVIGATION
-================================= */
+:root {
+  --black: #182126;
+  --blue: #4e9eb0;
+  --blue-light: #eaf5f7;
+  --gray: #718087;
+  --light: #f5f7f7;
+  --line: #dce3e5;
+  --white: #ffffff;
+  --radius: 24px;
+}
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-function showPage(pageId) {
+html {
+  scroll-behavior: smooth;
+}
 
-  document.querySelectorAll(".page").forEach(page => {
+body {
+  font-family: "DM Sans", sans-serif;
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.5;
+}
 
-    page.classList.remove("active");
+button {
+  font: inherit;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
 
-  });
-
-
-  const target =
-    document.getElementById(pageId);
-
-
-  if (target) {
-
-    target.classList.add("active");
-
-  }
-
-
-  document
-    .querySelector(".nav")
-    .classList.remove("open");
-
-
-  window.scrollTo({
-
-    top: 0,
-
-    behavior: "smooth"
-
-  });
-
+button:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
 }
 
 
+/* ================= HEADER ================= */
 
-/* =================================
-   MOBILE MENU
-================================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--line);
+}
 
+.header-inner {
+  max-width: 1180px;
+  margin: auto;
+  height: 78px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-function toggleMenu() {
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
 
-  document
-    .querySelector(".nav")
-    .classList.toggle("open");
+.logo strong {
+  color: var(--blue);
+}
 
+.logo-door {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--black);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+}
+
+.menu-button {
+  display: none;
+  width: 42px;
+  height: 42px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.menu-button span {
+  display: block;
+  width: 27px;
+  height: 2px;
+  background: var(--black);
+}
+
+.nav {
+  display: flex;
+  gap: 28px;
+}
+
+.nav button {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: color .2s;
+}
+
+.nav button:hover {
+  color: var(--blue);
 }
 
 
+/* ================= COMMON ================= */
 
-/* =================================
-   MY DOOR
-================================= */
+.page {
+  display: none;
+  min-height: 70vh;
+}
 
+.page.active {
+  display: block;
+}
 
-function selectMember(member) {
+.section {
+  max-width: 1180px;
+  margin: auto;
+  padding: 100px 30px;
+}
 
-  localStorage.setItem(
-    "myDoorMember",
-    member
-  );
+.section-label {
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 13px;
+}
 
+.page-header {
+  max-width: 700px;
+  padding: 90px 30px 50px;
+  margin: auto;
+}
 
-  updateMyDoor();
+.page-header h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(42px, 7vw, 78px);
+  line-height: .98;
+  letter-spacing: -4px;
+  margin-bottom: 22px;
+}
 
+.page-header p {
+  color: var(--gray);
+  font-size: 16px;
+}
 
-  showPage("mydoor");
+.back-home {
+  display: block;
+  max-width: 1180px;
+  margin: 70px auto 100px;
+  padding: 0 30px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
 
+.back-home:hover {
+  color: var(--blue);
 }
 
 
-function updateMyDoor() {
+/* ================= HERO ================= */
 
-  const savedMember =
-    localStorage.getItem("myDoorMember");
+.hero {
+  max-width: 1180px;
+  margin: auto;
+  padding: 150px 30px 130px;
+  text-align: center;
+}
 
+.hero-label {
+  color: var(--blue);
+  font-weight: 700;
+  letter-spacing: 4px;
+  font-size: 15px;
+  margin-bottom: 32px;
+}
 
-  const memberTitle =
-    document.getElementById("myMember");
+.hero h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(75px, 14vw, 175px);
+  line-height: .82;
+  letter-spacing: -9px;
+}
 
+.hero h1 span {
+  color: var(--blue);
+}
 
-  const memberText =
-    document.getElementById("myMemberText");
+.hero-description {
+  margin-top: 45px;
+  color: var(--gray);
+  font-size: 19px;
+  line-height: 1.8;
+}
 
+.primary-button {
+  margin-top: 38px;
+  background: var(--black);
+  color: white;
+  padding: 20px 35px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  transition: transform .2s, background .2s;
+}
 
-  if (savedMember) {
+.primary-button:hover {
+  transform: translateY(-3px);
+  background: var(--blue);
+}
 
-    memberTitle.textContent =
-      savedMember;
-
-
-    memberText.textContent =
-      `당신이 선택한 MY DOOR는 ${savedMember}입니다. 🚪`;
-
-  }
-
+.primary-button.small {
+  padding: 16px 24px;
+  font-size: 12px;
+  margin-top: 25px;
 }
 
 
-updateMyDoor();
+/* ================= TODAY ================= */
 
+.today {
+  background: var(--light);
+  max-width: none;
+  padding-left: max(30px, calc((100vw - 1120px) / 2));
+  padding-right: max(30px, calc((100vw - 1120px) / 2));
+}
 
+.today h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(42px, 6vw, 70px);
+  line-height: 1;
+  letter-spacing: -4px;
+  margin-bottom: 55px;
+}
 
-/* =================================
-   TODAY'S SONG
-================================= */
+.today-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
 
+.feature-card {
+  position: relative;
+  min-height: 360px;
+  padding: 30px;
+  border-radius: var(--radius);
+  background: white;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  transition: transform .25s, box-shadow .25s;
+}
 
-const songs = [
+.feature-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 20px 50px rgba(24,33,38,.09);
+}
 
-  {
-    title: "돌아버리겠다",
+.card-number {
+  font-size: 12px;
+  color: var(--gray);
+}
 
-    message:
-      "오늘은 조금 신나게 시작해볼까요?"
-  },
+.card-icon {
+  margin-top: 55px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 42px;
+}
 
+.card-small-title {
+  margin-top: 15px;
+  color: var(--blue);
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
 
-  {
-    title: "One and Only",
+.feature-card h3 {
+  margin-top: 7px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 30px;
+  letter-spacing: -1px;
+}
 
-    message:
-      "오늘의 기분을 조금 더 끌어올려봐요."
-  },
+.feature-card p {
+  margin-top: 13px;
+  color: var(--gray);
+}
 
+.card-arrow {
+  position: absolute;
+  right: 30px;
+  bottom: 27px;
+  font-size: 25px;
+}
 
-  {
-    title: "Serenade",
-
-    message:
-      "오늘은 조금 여유롭게 음악을 들어봐요."
-  },
-
-
-  {
-    title: "Earth, Wind & Fire",
-
-    message:
-      "오늘은 에너지 충전하는 날!"
-  },
-
-
-  {
-    title: "But Sometimes",
-
-    message:
-      "조용히 음악에 집중하고 싶은 날."
-  },
-
-
-  {
-    title: "Nice Guy",
-
-    message:
-      "오늘 하루도 가볍게 시작해봅시다."
-  },
-
-
-  {
-    title: "오늘의 RANDOM DOOR",
-
-    message:
-      "어떤 노래든 오늘의 플레이리스트가 됩니다."
-  }
-
-];
-
-
-
-function randomSong() {
-
-  const randomIndex =
-    Math.floor(
-      Math.random() * songs.length
-    );
-
-
-  const song =
-    songs[randomIndex];
-
-
-  document
-    .getElementById("songTitle")
-    .textContent =
-    song.title;
-
-
-  document
-    .getElementById("songMessage")
-    .textContent =
-    song.message;
-
+.countdown-mini {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 6px 11px;
+  background: var(--blue-light);
+  color: var(--blue);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 
-
-/* =================================
-   ONEDOOR QUIZ
-================================= */
-
-
-const quizData = [
-
-  {
-
-    question:
-      "새로운 보넥도 콘텐츠가 올라왔다!",
-
-    answers: [
-
-      "바로 본다 👀",
-
-      "알림부터 확인한다",
-
-      "나중에 본다",
-
-      "일단 저장한다"
-
-    ]
-
-  },
-
-
-  {
-
-    question:
-      "덕질할 때 가장 좋아하는 것은?",
-
-    answers: [
-
-      "음악 🎵",
-
-      "무대 🎤",
-
-      "사진 📸",
-
-      "콘텐츠 📺"
-
-    ]
-
-  },
-
-
-  {
-
-    question:
-      "콘텐츠 하나를 보기 시작했는데...",
-
-    answers: [
-
-      "하나만 보고 끝!",
-
-      "몇 개 더 본다",
-
-      "계속 보게 된다",
-
-      "시간이 사라졌다"
-
-    ]
-
-  },
-
-
-  {
-
-    question:
-      "새 앨범이 나왔다!",
-
-    answers: [
-
-      "전곡 바로 듣기",
-
-      "타이틀부터 듣기",
-
-      "앨범 정보부터 확인",
-
-      "일단 너무 좋음"
-
-    ]
-
-  },
-
-
-  {
-
-    question:
-      "원도어에게 가장 중요한 것은?",
-
-    answers: [
-
-      "좋은 음악",
-
-      "좋은 무대",
-
-      "좋은 콘텐츠",
-
-      "보넥도를 좋아하는 마음 💙"
-
-    ]
-
-  }
-
-];
-
-
-let currentQuestion = 0;
-
-let score = 0;
-
-
-
-function startQuiz() {
-
-  currentQuestion = 0;
-
-  score = 0;
-
-
-  document
-    .getElementById("quizStart")
-    .classList.add("hidden");
-
-
-  document
-    .getElementById("quizResult")
-    .classList.add("hidden");
-
-
-  document
-    .getElementById("quizArea")
-    .classList.remove("hidden");
-
-
-  showQuestion();
-
+/* ================= DOOR MENU ================= */
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.menu-card {
+  position: relative;
+  min-height: 230px;
+  text-align: left;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: white;
+  transition: all .25s;
+}
+
+.menu-card:hover {
+  background: var(--black);
+  color: white;
+  transform: translateY(-5px);
+}
+
+.menu-number {
+  display: block;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+.menu-title {
+  display: block;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.menu-description {
+  display: block;
+  margin-top: 6px;
+  color: var(--gray);
+}
+
+.menu-card:hover .menu-description {
+  color: #c4d1d5;
+}
+
+.menu-arrow {
+  position: absolute;
+  right: 28px;
+  bottom: 25px;
+  font-size: 24px;
 }
 
 
+/* ================= MEMBERS ================= */
 
-function showQuestion() {
+.member-grid {
+  max-width: 1120px;
+  margin: auto;
+  padding: 0 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
 
-  const data =
-    quizData[currentQuestion];
+.member-card {
+  min-height: 300px;
+  padding: 28px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--light);
+  text-align: left;
+  transition: .25s;
+}
 
+.member-card:hover {
+  transform: translateY(-6px);
+  background: var(--blue-light);
+}
 
-  document
-    .getElementById("questionNumber")
-    .textContent =
-    `${currentQuestion + 1} / ${quizData.length}`;
+.member-symbol {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--black);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 24px;
+  margin-bottom: 55px;
+}
 
+.member-card h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 32px;
+  letter-spacing: -1px;
+}
 
-  document
-    .getElementById("question")
-    .textContent =
-    data.question;
+.member-card p {
+  margin-top: 5px;
+  color: var(--gray);
+}
 
-
-  const answers =
-    document.getElementById("answers");
-
-
-  answers.innerHTML = "";
-
-
-  data.answers.forEach(
-    (answer, index) => {
-
-      const button =
-        document.createElement("button");
-
-
-      button.className =
-        "answer";
-
-
-      button.textContent =
-        answer;
-
-
-      button.onclick =
-        function() {
-
-          selectAnswer(index);
-
-        };
-
-
-      answers.appendChild(button);
-
-    }
-  );
-
+.member-select {
+  margin-top: 20px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 
+/* ================= MY DOOR ================= */
 
-function selectAnswer(index) {
+.mydoor-box {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: var(--radius);
+  background: var(--light);
+  border: 1px solid var(--line);
+}
 
-  score +=
-    (index + 1) * 5;
+.mydoor-top {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gray);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
 
+.favorite-display {
+  min-height: 350px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
 
-  currentQuestion++;
+.favorite-empty .big-door {
+  font-size: 80px;
+  margin-bottom: 15px;
+}
 
+.favorite-empty h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 25px;
+}
 
-  if (
-    currentQuestion <
-    quizData.length
-  ) {
+.favorite-empty p {
+  color: var(--gray);
+  margin-top: 7px;
+}
 
-    showQuestion();
+.favorite-member {
+  text-align: center;
+}
 
-  }
+.favorite-member .member-symbol {
+  margin: 0 auto 20px;
+  width: 100px;
+  height: 100px;
+  font-size: 34px;
+}
 
-  else {
+.favorite-member h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 48px;
+}
 
-    showResult();
+.favorite-member p {
+  color: var(--gray);
+}
 
-  }
+.secondary-button {
+  display: block;
+  margin: auto;
+  padding: 17px 25px;
+  border: 1px solid var(--black);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+}
 
+.secondary-button:hover {
+  background: var(--black);
+  color: white;
 }
 
 
+/* ================= SONG ================= */
 
-function showResult() {
+.song-feature {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 55px;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  border-radius: var(--radius);
+  background: var(--light);
+}
 
-  document
-    .getElementById("quizArea")
-    .classList.add("hidden");
+.vinyl {
+  flex: 0 0 250px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: var(--black);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 15px 30px rgba(0,0,0,.15);
+}
 
+.vinyl-center {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 25px;
+}
 
-  document
-    .getElementById("quizResult")
-    .classList.remove("hidden");
+.song-label {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
 
+.song-info h3 {
+  margin-top: 10px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 42px;
+  letter-spacing: -2px;
+}
 
-  document
-    .getElementById("resultScore")
-    .textContent =
-    `${score} POINTS`;
+.song-info p {
+  margin-top: 10px;
+  color: var(--gray);
+}
 
-
-  let title;
-
-  let message;
-
-
-  if (score >= 90) {
-
-    title =
-      "💎 원도어 고인물";
-
-    message =
-      "당신의 원도어력이 상당합니다.";
-
-  }
-
-
-  else if (score >= 65) {
-
-    title =
-      "💙 찐 원도어";
-
-    message =
-      "보넥도를 향한 마음이 느껴집니다.";
-
-  }
-
-
-  else if (score >= 40) {
-
-    title =
-      "🚪 성장 중인 원도어";
-
-    message =
-      "앞으로 더 많은 문을 열어봅시다.";
-
-  }
-
-
-  else {
-
-    title =
-      "🌱 새싹 원도어";
-
-    message =
-      "이제부터 천천히 알아가면 되죠!";
-
-  }
-
-
-  document
-    .getElementById("resultTitle")
-    .textContent =
-    title;
-
-
-  document
-    .getElementById("resultMessage")
-    .textContent =
-    message;
-
+.song-note {
+  max-width: 850px;
+  margin: 20px auto;
+  color: var(--gray);
+  font-size: 11px;
 }
 
 
+/* ================= BIRTHDAY ================= */
 
-/* =================================
-   BIRTHDAY D-DAY
-================================= */
+.birthday-list {
+  max-width: 850px;
+  margin: auto;
+  display: grid;
+  gap: 12px;
+}
 
+.birthday-card {
+  padding: 25px 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: white;
+}
 
-function calculateDday(
-  month,
-  day,
-  elementId
-) {
+.birthday-symbol {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-weight: 700;
+}
 
-  const today =
-    new Date();
+.birthday-name {
+  flex: 1;
+}
 
+.birthday-name h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 21px;
+}
 
-  let birthday =
-    new Date(
-      today.getFullYear(),
-      month - 1,
-      day
-    );
+.birthday-name p {
+  color: var(--gray);
+  font-size: 12px;
+}
 
-
-  if (birthday < today) {
-
-    birthday =
-      new Date(
-        today.getFullYear() + 1,
-        month - 1,
-        day
-      );
-
-  }
-
-
-  const difference =
-    birthday.getTime() -
-    today.getTime();
-
-
-  const days =
-    Math.ceil(
-      difference /
-      (1000 * 60 * 60 * 24)
-    );
-
-
-  const element =
-    document.getElementById(elementId);
-
-
-  if (days === 0) {
-
-    element.textContent =
-      "TODAY 🎂";
-
-  }
-
-  else {
-
-    element.textContent =
-      `D-${days}`;
-
-  }
-
+.dday {
+  color: var(--blue);
+  font-weight: 700;
 }
 
 
+/* ================= QUIZ ================= */
 
-function updateBirthdays() {
+.quiz-box,
+.quiz-result {
+  max-width: 750px;
+  margin: auto;
+  padding: 45px;
+  border-radius: var(--radius);
+  background: var(--light);
+}
 
-  calculateDday(
-    9,
-    4,
-    "dday-sungho"
-  );
+.quiz-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--gray);
+}
 
+.progress-line {
+  flex: 1;
+  height: 4px;
+  background: var(--line);
+}
 
-  calculateDday(
-    10,
-    22,
-    "dday-riwoo"
-  );
+#progressBar {
+  width: 20%;
+  height: 100%;
+  background: var(--blue);
+  transition: width .3s;
+}
 
+.quiz-box h3 {
+  margin-top: 55px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 31px;
+  line-height: 1.25;
+}
 
-  calculateDday(
-    12,
-    4,
-    "dday-jaehyun"
-  );
+.answers {
+  margin-top: 30px;
+  display: grid;
+  gap: 10px;
+}
 
+.answer-button {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  text-align: left;
+  background: white;
+  transition: .2s;
+}
 
-  calculateDday(
-    8,
-    10,
-    "dday-taesan"
-  );
+.answer-button:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  transform: translateX(4px);
+}
 
+.quiz-result {
+  display: none;
+  text-align: center;
+}
 
-  calculateDday(
-    10,
-    20,
-    "dday-leehan"
-  );
+.result-score {
+  margin: 25px 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 90px;
+  line-height: 1;
+}
 
+.result-score small {
+  font-size: 20px;
+  color: var(--gray);
+}
 
-  calculateDday(
-    11,
-    29,
-    "dday-woonhak"
-  );
+.quiz-result h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 30px;
+}
 
+.quiz-result p {
+  margin-top: 10px;
+  color: var(--gray);
 }
 
 
-updateBirthdays();
+/* ================= ARCHIVE ================= */
+
+.archive-grid {
+  max-width: 1120px;
+  margin: auto;
+  padding: 0 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.archive-card {
+  min-height: 350px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--light);
+}
+
+.archive-card > span {
+  color: var(--blue);
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.archive-symbol {
+  margin-top: 55px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 60px;
+  color: var(--blue);
+}
+
+.archive-card h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 27px;
+}
+
+.archive-card p {
+  color: var(--gray);
+  margin-top: 8px;
+}
+
+.archive-card button {
+  margin-top: 20px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.archive-message {
+  max-width: 1120px;
+  margin: 25px auto 0;
+  padding: 18px 30px;
+  color: var(--gray);
+  font-size: 13px;
+  display: none;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer {
+  position: relative;
+  padding: 65px 30px;
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+
+.footer-logo {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.footer p {
+  margin-top: 10px;
+  color: var(--gray);
+  font-size: 12px;
+}
+
+.top-button {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 22px;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 760px) {
+
+  .header-inner {
+    height: 70px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .logo-door {
+    width: 27px;
+    height: 27px;
+  }
+
+  .menu-button {
+    display: flex;
+  }
+
+  .nav {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: white;
+    border-bottom: 1px solid var(--line);
+    display: none;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav button {
+    padding: 16px 5px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero {
+    padding: 115px 20px 100px;
+  }
+
+  .hero-label {
+    font-size: 12px;
+    letter-spacing: 2.5px;
+  }
+
+  .hero h1 {
+    font-size: clamp(65px, 20vw, 100px);
+    letter-spacing: -5px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+  }
+
+  .primary-button {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .section {
+    padding: 70px 20px;
+  }
+
+  .today {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .today h2 {
+    font-size: 48px;
+    letter-spacing: -3px;
+    margin-bottom: 35px;
+  }
+
+  .today-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    min-height: 275px;
+  }
+
+  .card-icon {
+    margin-top: 30px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-card {
+    min-height: 180px;
+  }
+
+  .menu-number {
+    margin-bottom: 35px;
+  }
+
+  .page-header {
+    padding: 70px 20px 40px;
+  }
+
+  .page-header h2 {
+    font-size: 53px;
+    letter-spacing: -3px;
+  }
+
+  .member-grid {
+    grid-template-columns: 1fr 1fr;
+    padding: 0 20px;
+    gap: 10px;
+  }
+
+  .member-card {
+    min-height: 240px;
+    padding: 20px;
+  }
+
+  .member-symbol {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 35px;
+  }
+
+  .member-card h3 {
+    font-size: 25px;
+  }
+
+  .member-select {
+    font-size: 10px;
+  }
+
+  .mydoor-box {
+    margin: 0 20px;
+    padding: 20px;
+  }
+
+  .favorite-display {
+    min-height: 280px;
+  }
+
+  .song-feature {
+    margin: 0 20px;
+    padding: 30px;
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .vinyl {
+    width: 190px;
+    height: 190px;
+    flex-basis: 190px;
+  }
+
+  .song-info h3 {
+    font-size: 34px;
+  }
+
+  .birthday-list {
+    margin: 0 20px;
+  }
+
+  .birthday-card {
+    padding: 18px;
+  }
+
+  .birthday-symbol {
+    width: 45px;
+    height: 45px;
+  }
+
+  .birthday-name h3 {
+    font-size: 17px;
+  }
+
+  .dday {
+    font-size: 13px;
+  }
+
+  .quiz-box,
+  .quiz-result {
+    margin: 0 20px;
+    padding: 25px;
+  }
+
+  .quiz-box h3 {
+    margin-top: 40px;
+    font-size: 25px;
+  }
+
+  .archive-grid {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+
+  .archive-card {
+    min-height: 280px;
+  }
+
+  .back-home {
+    margin: 55px 20px 70px;
+    padding: 0;
+  }
+
+  .footer {
+    padding: 55px 20px;
+  }
+
+  .top-button {
+    position: static;
+    transform: none;
+    margin-top: 25px;
+  }
+}
