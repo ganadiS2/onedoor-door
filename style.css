@@ -1131,4 +1131,299 @@ button {
   .footer-bottom {
     gap: 20px;
   }
+   /* ==================================================
+   MOBILE FIX v2.1.1
+   ================================================== */
+
+@media (max-width: 800px) {
+
+  /* 전체 가로 넘침 방지 */
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* 헤더 */
+  .header-inner {
+    width: 100%;
+    height: 68px;
+    padding: 0 18px;
+  }
+
+  .logo {
+    font-size: 17px;
+    gap: 7px;
+    white-space: nowrap;
+  }
+
+  .logo-mark {
+    width: 22px;
+    height: 27px;
+  }
+
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .menu-button {
+    display: flex !important;
+    flex-shrink: 0;
+  }
+
+  /* HOME */
+  .hero {
+    min-height: calc(100svh - 68px);
+    padding: 32px 24px;
+  }
+
+  .hero h1 {
+    font-size: clamp(58px, 17vw, 78px);
+    letter-spacing: -5px;
+    line-height: .86;
+    margin: 40px 0 38px;
+  }
+
+  .hero-copy {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 32px;
+  }
+
+  .primary-button {
+    min-width: 0;
+    width: 100%;
+    max-width: 315px;
+    padding: 18px 22px;
+  }
+
+  /* TODAY */
+  .section {
+    width: calc(100% - 32px);
+    padding: 75px 0;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(42px, 12vw, 58px);
+    letter-spacing: -3px;
+  }
+
+  .section-note {
+    font-size: 12px;
+  }
+
+  .today-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .feature-card {
+    min-height: 260px;
+    padding: 23px;
+  }
+
+  .feature-icon {
+    margin: 32px 0 20px;
+    font-size: 40px;
+  }
+
+  .feature-card h3 {
+    font-size: 25px;
+  }
+
+  /* PAGE HERO */
+  .page-hero {
+    width: calc(100% - 32px);
+    padding: 70px 0 40px;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(48px, 14vw, 64px);
+    line-height: .92;
+    letter-spacing: -4px;
+    overflow-wrap: anywhere;
+  }
+
+  .page-hero p:last-child {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* MEMBERS */
+  .members-grid {
+    width: calc(100% - 32px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .member-card {
+    min-height: 225px;
+    padding: 19px;
+  }
+
+  .member-symbol {
+    font-size: 48px;
+    margin: 30px 0 15px;
+  }
+
+  .member-card strong {
+    font-size: 22px;
+  }
+
+  /* SONG */
+  .song-box {
+    width: calc(100% - 32px);
+    padding: 32px 22px;
+    margin-bottom: 80px;
+  }
+
+  .song-decoration {
+    margin-bottom: 45px;
+  }
+
+  .song-box h2 {
+    font-size: clamp(30px, 9vw, 42px);
+    overflow-wrap: anywhere;
+  }
+
+  .song-meta {
+    font-size: 9px;
+  }
+
+  /* QUIZ */
+  .quiz-box {
+    width: calc(100% - 32px);
+    padding: 25px 20px;
+    margin-bottom: 80px;
+  }
+
+  .quiz-progress {
+    margin-bottom: 35px;
+  }
+
+  .quiz-box h2 {
+    font-size: 22px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .quiz-answer {
+    padding: 15px 16px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .quiz-result strong {
+    font-size: 54px;
+  }
+
+  .quiz-result h2 {
+    font-size: 23px;
+  }
+
+  /* ARCHIVE */
+  .archive-grid {
+    width: calc(100% - 32px);
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .archive-card {
+    min-height: 235px;
+    padding: 23px;
+  }
+
+  .archive-card h2 {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .archive-detail {
+    width: calc(100% - 32px);
+    padding: 22px 18px;
+    margin-bottom: 80px;
+  }
+
+  .archive-detail h2 {
+    font-size: 32px;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
+  .timeline-item {
+    padding-left: 18px;
+  }
+
+  .album {
+    padding: 16px;
+  }
+
+  .track-list {
+    font-size: 12px;
+  }
+
+  /* BIRTHDAY */
+  .birthday-box {
+    width: calc(100% - 32px);
+    padding: 35px 18px;
+    margin-bottom: 80px;
+  }
+
+  .birthday-box h2 {
+    font-size: 38px;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+
+  .countdown div {
+    padding: 15px 5px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .countdown strong {
+    font-size: 27px;
+  }
+
+  .birthday-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* MY DOOR */
+  .mydoor-box {
+    width: calc(100% - 32px);
+    padding: 45px 22px;
+  }
+
+  .mydoor-box h2 {
+    font-size: 36px;
+    overflow-wrap: anywhere;
+  }
+
+  .mydoor-note {
+    width: calc(100% - 32px);
+    margin-bottom: 80px;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 45px 20px;
+  }
+
+  .footer-top {
+    gap: 25px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 45px;
+  }
+}
 }
