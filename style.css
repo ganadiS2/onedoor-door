@@ -549,4 +549,586 @@ button {
   letter-spacing: -3px;
 }
 
-.song-box > p:not(.
+.song-box > p:not(.song-label) {
+  color: var(--gray);
+}
+
+.song-meta {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0 30px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 10px;
+  color: var(--gray);
+  letter-spacing: 1px;
+}
+
+
+/* ================= QUIZ ================= */
+
+.quiz-box {
+  width: min(760px, calc(100% - 40px));
+  margin: auto auto 130px;
+  padding: 45px;
+  background: white;
+  border: 1px solid var(--line);
+}
+
+.quiz-progress {
+  margin-bottom: 70px;
+}
+
+.quiz-progress > span {
+  color: var(--gray);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.progress-bar {
+  height: 3px;
+  margin-top: 12px;
+  background: var(--blue-light);
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%;
+  width: 20%;
+  background: var(--blue);
+  transition: .3s;
+}
+
+.quiz-box h2 {
+  margin: 18px 0 30px;
+  font-size: 27px;
+  line-height: 1.4;
+}
+
+.quiz-answers {
+  display: grid;
+  gap: 10px;
+}
+
+.quiz-answer {
+  width: 100%;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  text-align: left;
+  transition: .2s;
+}
+
+.quiz-answer:hover {
+  border-color: var(--blue);
+  background: var(--blue-light);
+}
+
+.quiz-result {
+  text-align: center;
+}
+
+.quiz-result strong {
+  display: block;
+  margin: 25px 0;
+  color: var(--blue-dark);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 70px;
+}
+
+.quiz-result h2 {
+  margin-bottom: 35px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* ================= ARCHIVE ================= */
+
+.archive-grid {
+  width: min(1180px, calc(100% - 40px));
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 15px;
+}
+
+.archive-card {
+  min-height: 280px;
+  padding: 28px;
+  background: white;
+  border: 1px solid var(--line);
+  text-align: left;
+  position: relative;
+  transition: .25s;
+}
+
+.archive-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-4px);
+}
+
+.archive-date {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  font-size: 11px;
+  color: var(--gray);
+}
+
+.archive-icon {
+  margin: 35px 0 25px;
+  color: var(--blue);
+  font-size: 40px;
+}
+
+.archive-category {
+  color: var(--blue-dark);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.archive-card h2 {
+  margin: 10px 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 25px;
+}
+
+.archive-card > p:last-child {
+  color: var(--gray);
+  font-size: 12px;
+}
+
+.archive-detail {
+  width: min(900px, calc(100% - 40px));
+  margin: 40px auto 120px;
+  padding: 40px;
+  background: white;
+  border: 1px solid var(--line);
+}
+
+.archive-close {
+  margin-bottom: 35px;
+  color: var(--gray);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.archive-detail h2 {
+  margin-bottom: 12px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 45px;
+}
+
+.archive-detail .detail-sub {
+  color: var(--gray);
+  margin-bottom: 35px;
+}
+
+.timeline {
+  border-left: 1px solid var(--line);
+}
+
+.timeline-item {
+  padding: 0 0 28px 25px;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 6px;
+  width: 7px;
+  height: 7px;
+  background: var(--blue);
+  border-radius: 50%;
+}
+
+.timeline-item strong {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.timeline-item span {
+  display: block;
+  color: var(--gray);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.album-list {
+  display: grid;
+  gap: 10px;
+}
+
+.album {
+  border: 1px solid var(--line);
+  padding: 18px 20px;
+}
+
+.album summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.album summary::marker {
+  color: var(--blue);
+}
+
+.track-list {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+  color: var(--gray);
+  font-size: 13px;
+}
+
+.track-list div {
+  padding: 7px 0;
+}
+
+.memory-form {
+  display: grid;
+  gap: 12px;
+}
+
+.memory-form input,
+.memory-form textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  font: inherit;
+  resize: vertical;
+}
+
+.memory-form textarea {
+  min-height: 130px;
+}
+
+.memory-form button {
+  justify-self: start;
+  padding: 14px 22px;
+  background: var(--black);
+  color: white;
+  border-radius: 30px;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.saved-memory {
+  margin-top: 25px;
+  padding: 20px;
+  background: var(--blue-light);
+  border-left: 3px solid var(--blue);
+}
+
+.saved-memory small {
+  color: var(--gray);
+}
+
+
+/* ================= BIRTHDAY ================= */
+
+.birthday-box {
+  width: min(800px, calc(100% - 40px));
+  margin: auto auto 130px;
+  padding: 55px;
+  background: white;
+  border: 1px solid var(--line);
+  text-align: center;
+}
+
+.birthday-box h2 {
+  margin: 12px 0 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 50px;
+}
+
+#birthdayDate {
+  color: var(--blue-dark);
+  font-size: 14px;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  margin: 50px 0;
+}
+
+.countdown div {
+  border-right: 1px solid var(--line);
+}
+
+.countdown div:last-child {
+  border: 0;
+}
+
+.countdown strong {
+  display: block;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 42px;
+}
+
+.countdown span {
+  color: var(--gray);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.birthday-list {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  border-top: 1px solid var(--line);
+}
+
+.birthday-list div {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+
+.birthday-list strong {
+  color: var(--blue-dark);
+}
+
+
+/* ================= MY DOOR ================= */
+
+.mydoor-box {
+  width: min(700px, calc(100% - 40px));
+  margin: auto;
+  padding: 65px 40px;
+  text-align: center;
+  background: white;
+  border: 1px solid var(--line);
+}
+
+.mydoor-mark {
+  margin-bottom: 30px;
+}
+
+.mydoor-mark .logo-mark {
+  width: 35px;
+  height: 42px;
+}
+
+.mydoor-box h2 {
+  margin: 15px 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 45px;
+}
+
+.mydoor-box > p:not(.mydoor-label) {
+  color: var(--gray);
+  margin-bottom: 35px;
+}
+
+.mydoor-note {
+  width: min(700px, calc(100% - 40px));
+  margin: 20px auto 120px;
+  color: var(--gray);
+  font-size: 11px;
+}
+
+.mydoor-note span {
+  color: var(--blue-dark);
+  margin-right: 12px;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer {
+  padding: 55px max(20px, calc((100vw - 1180px)/2));
+  border-top: 1px solid var(--line);
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.footer-logo {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+}
+
+.footer p {
+  color: var(--gray);
+  font-size: 11px;
+  margin-top: 8px;
+}
+
+.footer-top button {
+  color: var(--gray);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 70px;
+  color: var(--gray);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 800px) {
+
+  .header-inner {
+    height: 68px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .menu-button {
+    display: flex;
+  }
+
+  .mobile-nav {
+    display: none;
+    padding: 10px 20px 25px;
+    background: var(--bg);
+  }
+
+  .mobile-nav.open {
+    display: block;
+  }
+
+  .mobile-nav button {
+    width: 100%;
+    padding: 17px 5px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
+  }
+
+  .mobile-nav button span {
+    display: inline-block;
+    width: 40px;
+    color: var(--blue-dark);
+    font-size: 10px;
+  }
+
+  .page {
+    padding-top: 68px;
+  }
+
+  .hero {
+    min-height: calc(100vh - 68px);
+    padding: 35px 27px;
+  }
+
+  .hero h1 {
+    font-size: 72px;
+    letter-spacing: -5px;
+    margin: 45px 0;
+  }
+
+  .hero-copy {
+    font-size: 17px;
+  }
+
+  .section {
+    width: calc(100% - 40px);
+    padding: 90px 0;
+  }
+
+  .section-heading {
+    display: block;
+  }
+
+  .section-note {
+    text-align: left;
+    margin-top: 20px;
+  }
+
+  .today-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    min-height: 300px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-hero {
+    width: calc(100% - 40px);
+    padding: 80px 0 50px;
+  }
+
+  .page-hero h1 {
+    font-size: 65px;
+    letter-spacing: -4px;
+  }
+
+  .members-grid {
+    width: calc(100% - 40px);
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .member-card {
+    min-height: 250px;
+  }
+
+  .member-symbol {
+    font-size: 55px;
+    margin-top: 35px;
+  }
+
+  .song-box,
+  .quiz-box,
+  .birthday-box {
+    width: calc(100% - 40px);
+    padding: 35px 25px;
+  }
+
+  .song-box h2 {
+    font-size: 42px;
+  }
+
+  .archive-grid {
+    width: calc(100% - 40px);
+    grid-template-columns: 1fr;
+  }
+
+  .archive-detail {
+    width: calc(100% - 40px);
+    padding: 25px;
+  }
+
+  .archive-detail h2 {
+    font-size: 35px;
+  }
+
+  .countdown strong {
+    font-size: 28px;
+  }
+
+  .birthday-list {
+    grid-template-columns: 1fr;
+  }
+
+  .closing-section h2 {
+    font-size: 58px;
+  }
+
+  .footer-bottom {
+    gap: 20px;
+  }
+}
