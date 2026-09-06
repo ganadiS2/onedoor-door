@@ -1,15 +1,13 @@
 /* ==================================================
-   ONEDOOR :DOOR v2.0
+   ONEDOOR :DOOR v2.1
    ================================================== */
 
 
-/* ================= PAGE NAVIGATION ================= */
-
-const pages = document.querySelectorAll(".page");
+/* ================= PAGE ================= */
 
 function showPage(pageName) {
 
-  pages.forEach(page => {
+  document.querySelectorAll(".page").forEach(page => {
     page.classList.remove("active");
   });
 
@@ -19,30 +17,20 @@ function showPage(pageName) {
     target.classList.add("active");
   }
 
-  closeMobileMenu();
-
   window.scrollTo({
     top: 0,
     behavior: "smooth"
   });
 
-  updatePageTitle(pageName);
-}
+  closeMobileMenu();
 
+  if (pageName === "birthday") {
+    updateBirthday();
+  }
 
-function updatePageTitle(pageName) {
-
-  const titles = {
-    home: "ONEDOOR :DOOR",
-    members: "MEMBERS — ONEDOOR :DOOR",
-    song: "SONG — ONEDOOR :DOOR",
-    quiz: "QUIZ — ONEDOOR :DOOR",
-    archive: "ARCHIVE — ONEDOOR :DOOR",
-    birthday: "BIRTHDAY — ONEDOOR :DOOR",
-    mydoor: "MY DOOR — ONEDOOR :DOOR"
-  };
-
-  document.title = titles[pageName] || "ONEDOOR :DOOR";
+  if (pageName === "mydoor") {
+    updateMyDoor();
+  }
 }
 
 
@@ -56,8 +44,6 @@ if (menuButton) {
   menuButton.addEventListener("click", () => {
 
     const isOpen = mobileNav.classList.toggle("open");
-
-    menuButton.classList.toggle("active", isOpen);
 
     menuButton.setAttribute(
       "aria-expanded",
@@ -74,7 +60,6 @@ function closeMobileMenu() {
   if (!mobileNav || !menuButton) return;
 
   mobileNav.classList.remove("open");
-  menuButton.classList.remove("active");
 
   menuButton.setAttribute(
     "aria-expanded",
@@ -83,40 +68,37 @@ function closeMobileMenu() {
 }
 
 
-/* ================= HOME SCROLL ================= */
+/* ================= HOME ================= */
 
 function scrollToToday() {
-
-  const home = document.getElementById("home");
-
-  if (!home) return;
 
   const today = document.getElementById("today");
 
   if (today) {
-
     today.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+      behavior: "smooth"
     });
-
   }
 
 }
 
 
-/* ================= MEMBERS / MY DOOR ================= */
+/* ================= MEMBERS ================= */
 
-const memberStorageKey = "onedoorSelectedMember";
+const MEMBER_KEY = "onedoorSelectedMember";
 
-function selectMember(member) {
+function selectMember(name) {
 
   localStorage.setItem(
-    memberStorageKey,
-    member
+    MEMBER_KEY,
+    name
   );
 
   updateMyDoor();
+
+  alert(
+    `${name}이(가) MY DOOR의 주인으로 저장됐어요! 🚪`
+  );
 
   showPage("mydoor");
 }
@@ -125,95 +107,297 @@ function selectMember(member) {
 function updateMyDoor() {
 
   const selectedMember =
-    localStorage.getItem(memberStorageKey);
-
-  const memberElement =
     document.getElementById("selectedMember");
 
-  const messageElement =
+  const message =
     document.getElementById("mydoorMessage");
 
-  if (!memberElement || !messageElement) return;
+  if (!selectedMember || !message) return;
 
-  if (selectedMember) {
+  const saved =
+    localStorage.getItem(MEMBER_KEY);
 
-    memberElement.textContent =
-      selectedMember;
+  if (!saved) {
 
-    messageElement.textContent =
-      `${selectedMember}와 함께하는 나만의 문이 열렸어요.`;
-
-  } else {
-
-    memberElement.textContent =
+    selectedMember.textContent =
       "아직 선택하지 않았어요.";
 
-    messageElement.textContent =
+    message.textContent =
       "MEMBERS에서 좋아하는 멤버를 선택해보세요.";
 
+    return;
   }
 
+  selectedMember.textContent =
+    saved;
+
+  message.textContent =
+    `${saved}와 함께하는 나만의 DOOR.`;
 }
 
 
 /* ================= SONG ================= */
 
+/*
+  공식 디스코그래피 기준으로 정리한
+  BOYNEXTDOOR 발매곡 목록.
+
+  Live Ver. / Instrumental 등은 제외하고
+  일반 발매곡과 일본어/영어 버전을 포함.
+*/
+
 const songs = [
-  {
-    title: "One and Only",
-    description: "오늘의 문을 여는 첫 번째 노래."
-  },
+
+  /* WHO! */
   {
     title: "But I Like You",
-    description: "가볍게 시작하고 싶은 날의 노래."
+    description: "BOYNEXTDOOR의 시작을 연 첫 번째 이야기."
+  },
+  {
+    title: "One and Only",
+    description: "당당하게 나만의 방식으로 문을 열어보는 노래."
   },
   {
     title: "Serenade",
-    description: "조금 더 따뜻한 분위기가 필요한 날."
+    description: "좋아하는 마음을 솔직하게 꺼내놓는 순간."
+  },
+
+  /* WHY.. */
+  {
+    title: "Crying",
+    description: "청춘의 감정을 조금 더 깊게 들여다보는 노래."
+  },
+  {
+    title: "But Sometimes",
+    description: "복잡한 마음을 솔직하게 풀어낸 이야기."
+  },
+  {
+    title: "ABCDLOVE",
+    description: "사랑을 장난스럽고 귀엽게 표현한 노래."
+  },
+
+  /* HOW? */
+  {
+    title: "OUR",
+    description: "우리라는 관계를 바라보는 따뜻한 이야기."
+  },
+  {
+    title: "Amnesia",
+    description: "잊고 싶은 기억과 남아 있는 감정."
+  },
+  {
+    title: "So let's go see the stars",
+    description: "별을 보러 가고 싶은 밤에 어울리는 노래."
   },
   {
     title: "Earth, Wind & Fire",
-    description: "기분을 확 끌어올리고 싶은 날."
+    description: "BOYNEXTDOOR의 에너지로 가득한 대표곡."
+  },
+  {
+    title: "l i f e i s c o o l",
+    description: "조금은 느긋하게 하루를 보내고 싶은 날."
+  },
+  {
+    title: "Dear. My Darling",
+    description: "소중한 사람에게 건네는 다정한 이야기."
+  },
+  {
+    title: "Earth, Wind & Fire (English Ver.)",
+    description: "Earth, Wind & Fire의 English Ver."
+  },
+
+  /* AND, */
+  {
+    title: "One and Only (Japanese Ver.)",
+    description: "One and Only Japanese Ver."
+  },
+  {
+    title: "Earth, Wind & Fire (Japanese Ver.)",
+    description: "Earth, Wind & Fire Japanese Ver."
+  },
+  {
+    title: "But Sometimes (Japanese Ver.)",
+    description: "But Sometimes Japanese Ver."
+  },
+  {
+    title: "GOOD DAY",
+    description: "오늘을 조금 더 좋은 날로 만들어주는 노래."
+  },
+
+  /* 19.99 */
+  {
+    title: "Dangerous",
+    description: "강렬한 에너지로 분위기를 바꾸고 싶은 날."
+  },
+  {
+    title: "Gonna Be A Rock",
+    description: "청춘의 자유로운 에너지를 담은 노래."
   },
   {
     title: "Nice Guy",
-    description: "오늘은 조금 자신감 있게."
+    description: "유쾌하고 자신감 있는 매력으로 가득한 노래."
   },
   {
-    title: "Dangerous",
-    description: "에너지 넘치는 하루를 위한 선택."
-  },
-  {
-    title: "123-78",
-    description: "리듬에 맞춰 문을 열어보세요."
+    title: "20",
+    description: "스무 살을 앞둔 청춘의 감정을 담은 노래."
   },
   {
     title: "Call Me",
-    description: "조용히 음악을 즐기고 싶은 날."
+    description: "보고 싶은 사람에게 먼저 연락하고 싶은 날."
+  },
+  {
+    title: "Nice Guy (English Ver.)",
+    description: "Nice Guy English Ver."
+  },
+
+  /* 2025 single */
+  {
+    title: "IF I SAY, I LOVE YOU",
+    description: "좋아한다는 말을 솔직하게 전하고 싶은 날."
+  },
+
+  {
+    title: "오늘만 I LOVE YOU (Japanese Ver.)",
+    description: "오늘만 I LOVE YOU Japanese Ver."
+  },
+
+  /* No Genre */
+  {
+    title: "123-78",
+    description: "No Genre의 시작을 알리는 트랙."
+  },
+  {
+    title: "I Feel Good",
+    description: "기분을 확 끌어올리고 싶은 날."
+  },
+  {
+    title: "Step By Step",
+    description: "천천히라도 앞으로 나아가는 이야기."
+  },
+  {
+    title: "Is That True?",
+    description: "복잡한 관계 속에서 진짜 마음을 묻는 노래."
+  },
+  {
+    title: "Next Mistake",
+    description: "실수와 청춘의 이야기를 담은 노래."
+  },
+  {
+    title: "I Feel Good (English Ver.)",
+    description: "I Feel Good English Ver."
+  },
+
+  /* BOYLIFE */
+  {
+    title: "Count To Love",
+    description: "BOYLIFE의 일본 오리지널 타이틀곡."
+  },
+  {
+    title: "I Feel Good (Japanese Ver.)",
+    description: "I Feel Good Japanese Ver."
+  },
+  {
+    title: "Nice Guy (Japanese Ver.)",
+    description: "Nice Guy Japanese Ver."
+  },
+  {
+    title: "Dangerous (Japanese Ver.)",
+    description: "Dangerous Japanese Ver."
+  },
+
+  /* The Action */
+  {
+    title: "Live In Paris",
+    description: "The Action의 첫 번째 트랙."
+  },
+  {
+    title: "Hollywood Action",
+    description: "영화처럼 강렬한 순간을 담은 노래."
+  },
+  {
+    title: "JAM!",
+    description: "신나게 분위기를 즐기고 싶은 날."
+  },
+  {
+    title: "Bathroom",
+    description: "The Action 수록곡."
+  },
+  {
+    title: "As Time Goes By",
+    description: "시간이 흘러도 남는 마음에 관한 이야기."
+  },
+
+  /* HOME */
+  {
+    title: "06070",
+    description: "BOYNEXTDOOR 1st Studio Album HOME의 시작."
+  },
+  {
+    title: "VIRAL",
+    description: "HOME에 수록된 강렬한 에너지의 트랙."
+  },
+  {
+    title: "ddok ddok ddok",
+    description: "톡톡 튀는 매력이 느껴지는 HOME 수록곡."
+  },
+  {
+    title: "ADIOS!",
+    description: "시원하게 작별을 말하고 싶은 순간."
+  },
+  {
+    title: "Upside Down",
+    description: "일상을 뒤집어 보는 듯한 HOME 수록곡."
+  },
+  {
+    title: "DIVE",
+    description: "망설이지 않고 뛰어들고 싶은 순간."
+  },
+  {
+    title: "Forever You",
+    description: "오래도록 함께하고 싶은 마음을 담은 노래."
+  },
+  {
+    title: "I Wonder",
+    description: "궁금하고 복잡한 마음을 들여다보는 노래."
+  },
+  {
+    title: "I Wonder, Always",
+    description: "HOME CD Only 수록곡."
+  },
+
+  /* Latest */
+  {
+    title: "SAY CHEESE!",
+    description: "카메라 앞에서 웃어버리고 싶은 순간."
+  },
+  {
+    title: "Boom Boom Boom",
+    description: "2026년 공개된 BOYNEXTDOOR의 최신 일본 디지털 싱글."
   }
+
 ];
 
 
-let currentSongIndex = 0;
+let lastSongIndex = -1;
 
 
 function pickSong() {
 
-  let nextIndex;
+  if (songs.length === 0) return;
+
+  let index;
 
   do {
-    nextIndex =
-      Math.floor(
-        Math.random() * songs.length
-      );
+    index =
+      Math.floor(Math.random() * songs.length);
   } while (
     songs.length > 1 &&
-    nextIndex === currentSongIndex
+    index === lastSongIndex
   );
 
-  currentSongIndex = nextIndex;
+  lastSongIndex = index;
 
-  const song = songs[currentSongIndex];
+  const song = songs[index];
 
   const title =
     document.getElementById("songTitle");
@@ -235,509 +419,113 @@ function pickSong() {
 
   if (number) {
 
+    const current =
+      String(index + 1).padStart(2, "0");
+
     number.textContent =
-      String(currentSongIndex + 1).padStart(2, "0")
-      + " / "
-      + String(songs.length).padStart(2, "0");
-
+      `${current} / ${songs.length}`;
   }
 
 }
 
 
-/* ================= QUIZ ================= */
-
-const quizQuestions = [
-  {
-    question: "BOYNEXTDOOR의 공식 팬덤명은?",
-    answers: [
-      "ONEDOOR",
-      "BND",
-      "DOOR",
-      "NEXTDOOR"
-    ],
-    correct: 0
-  },
-
-  {
-    question: "BOYNEXTDOOR는 몇 명의 멤버로 구성되어 있을까요?",
-    answers: [
-      "4명",
-      "5명",
-      "6명",
-      "7명"
-    ],
-    correct: 2
-  },
-
-  {
-    question: "다음 중 BOYNEXTDOOR의 멤버가 아닌 사람은?",
-    answers: [
-      "성호",
-      "리우",
-      "태산",
-      "민호"
-    ],
-    correct: 3
-  },
-
-  {
-    question: "다음 중 BOYNEXTDOOR의 곡은?",
-    answers: [
-      "One and Only",
-      "ONE MORE TIME",
-      "Door Open",
-      "My BOY"
-    ],
-    correct: 0
-  },
-
-  {
-    question: "ONEDOOR :DOOR에서 멤버를 선택하면 저장되는 공간은?",
-    answers: [
-      "ARCHIVE",
-      "MY DOOR",
-      "SONG",
-      "BIRTHDAY"
-    ],
-    correct: 1
-  }
-];
-
-
-let quizIndex = 0;
-let quizScore = 0;
-let quizAnswered = false;
-
-
-function loadQuiz() {
-
-  const question =
-    quizQuestions[quizIndex];
-
-  const questionElement =
-    document.getElementById("quizQuestion");
-
-  const answersElement =
-    document.getElementById("quizAnswers");
-
-  const progressElement =
-    document.getElementById("quizProgress");
-
-  const progressFill =
-    document.getElementById("progressFill");
-
-  if (
-    !questionElement ||
-    !answersElement
-  ) return;
-
-
-  questionElement.textContent =
-    question.question;
-
-
-  answersElement.innerHTML = "";
-
-
-  question.answers.forEach(
-    (answer, index) => {
-
-      const button =
-        document.createElement("button");
-
-      button.className =
-        "quiz-answer";
-
-      button.innerHTML = `
-        <span class="answer-number">
-          ${String.fromCharCode(65 + index)}
-        </span>
-        <span>${answer}</span>
-      `;
-
-      button.addEventListener(
-        "click",
-        () => answerQuiz(index)
-      );
-
-      answersElement.appendChild(button);
-
-    }
-  );
-
-
-  if (progressElement) {
-
-    progressElement.textContent =
-      `QUESTION ${String(quizIndex + 1).padStart(2, "0")} / ${String(quizQuestions.length).padStart(2, "0")}`;
-
-  }
-
-
-  if (progressFill) {
-
-    const percent =
-      ((quizIndex + 1) / quizQuestions.length) * 100;
-
-    progressFill.style.width =
-      `${percent}%`;
-
-  }
-
-}
-
-
-function answerQuiz(selectedIndex) {
-
-  if (quizAnswered) return;
-
-  quizAnswered = true;
-
-  const question =
-    quizQuestions[quizIndex];
-
-  const answerButtons =
-    document.querySelectorAll(".quiz-answer");
-
-  answerButtons.forEach(
-    (button, index) => {
-
-      button.disabled = true;
-
-      if (index === question.correct) {
-        button.classList.add("correct");
-      }
-
-      if (
-        index === selectedIndex &&
-        selectedIndex !== question.correct
-      ) {
-        button.classList.add("wrong");
-      }
-
-    }
-  );
-
-
-  if (
-    selectedIndex === question.correct
-  ) {
-    quizScore++;
-  }
-
-
-  setTimeout(() => {
-
-    quizIndex++;
-
-    quizAnswered = false;
-
-    if (
-      quizIndex >= quizQuestions.length
-    ) {
-      showQuizResult();
-    } else {
-      loadQuiz();
-    }
-
-  }, 750);
-
-}
-
-
-function showQuizResult() {
-
-  const content =
-    document.getElementById("quizContent");
-
-  const result =
-    document.getElementById("quizResult");
-
-  const score =
-    document.getElementById("quizScore");
-
-  const resultText =
-    document.getElementById("quizResultText");
-
-
-  if (content) {
-    content.classList.add("hidden");
-  }
-
-  if (result) {
-    result.classList.remove("hidden");
-  }
-
-  if (score) {
-
-    score.textContent =
-      `${quizScore} / ${quizQuestions.length}`;
-
-  }
-
-
-  if (resultText) {
-
-    if (quizScore === 5) {
-
-      resultText.textContent =
-        "완벽해요. 원도어력 MAX!";
-
-    } else if (quizScore >= 3) {
-
-      resultText.textContent =
-        "꽤 잘 알고 있네요. 조금만 더!";
-
-    } else {
-
-      resultText.textContent =
-        "다시 한 번 도전해보세요!";
-
-    }
-
-  }
-
-}
-
-
-function restartQuiz() {
-
-  quizIndex = 0;
-  quizScore = 0;
-  quizAnswered = false;
-
-  const content =
-    document.getElementById("quizContent");
-
-  const result =
-    document.getElementById("quizResult");
-
-
-  if (content) {
-    content.classList.remove("hidden");
-  }
-
-  if (result) {
-    result.classList.add("hidden");
-  }
-
-  loadQuiz();
-
-}
-
-
-/* ================= BIRTHDAY ================= */
-
-const birthdays = [
-  {
-    name: "성호",
-    month: 9,
-    day: 4
-  },
-  {
-    name: "리우",
-    month: 10,
-    day: 22
-  },
-  {
-    name: "재현",
-    month: 12,
-    day: 4
-  },
-  {
-    name: "태산",
-    month: 8,
-    day: 10
-  },
-  {
-    name: "이한",
-    month: 10,
-    day: 20
-  },
-  {
-    name: "운학",
-    month: 11,
-    day: 29
-  }
-];
-
-
-function getNextBirthday() {
-
-  const now = new Date();
-
-  let candidates =
-    birthdays.map(person => {
-
-      let year =
-        now.getFullYear();
-
-      let date =
-        new Date(
-          year,
-          person.month - 1,
-          person.day,
-          0,
-          0,
-          0
-        );
-
-      if (date < now) {
-        date =
-          new Date(
-            year + 1,
-            person.month - 1,
-            person.day,
-            0,
-            0,
-            0
-          );
-      }
-
-      return {
-        ...person,
-        date
-      };
-
-    });
-
-
-  candidates.sort(
-    (a, b) =>
-      a.date.getTime() -
-      b.date.getTime()
-  );
-
-
-  return candidates[0];
-}
-
-
-function updateBirthday() {
-
-  const next =
-    getNextBirthday();
-
-  const now =
-    new Date();
-
-  const difference =
-    next.date.getTime() -
-    now.getTime();
-
-
-  const days =
-    Math.floor(
-      difference /
-      (1000 * 60 * 60 * 24)
-    );
-
-  const hours =
-    Math.floor(
-      (
-        difference %
-        (1000 * 60 * 60 * 24)
-      ) /
-      (1000 * 60 * 60)
-    );
-
-  const minutes =
-    Math.floor(
-      (
-        difference %
-        (1000 * 60 * 60)
-      ) /
-      (1000 * 60)
-    );
-
-  const seconds =
-    Math.floor(
-      (
-        difference %
-        (1000 * 60)
-      ) /
-      1000
-    );
-
-
-  setText(
-    "days",
-    String(days).padStart(2, "0")
-  );
-
-  setText(
-    "hours",
-    String(hours).padStart(2, "0")
-  );
-
-  setText(
-    "minutes",
-    String(minutes).padStart(2, "0")
-  );
-
-  setText(
-    "seconds",
-    String(seconds).padStart(2, "0")
-  );
-
-
-  setText(
-    "birthdayMember",
-    next.name
-  );
-
-  setText(
-    "birthdayDate",
-    `${String(next.month).padStart(2, "0")}.${String(next.day).padStart(2, "0")}`
-  );
-
-
-  const homeCountdown =
-    document.getElementById(
-      "homeCountdown"
-    );
-
-  if (homeCountdown) {
-
-    homeCountdown.textContent =
-      `D-${days}`;
-
-  }
-
-}
-
-
-function setText(id, value) {
-
-  const element =
-    document.getElementById(id);
-
-  if (element) {
-    element.textContent = value;
-  }
-
-}
-
-
-/* ================= INITIALIZE ================= */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    updateMyDoor();
-
-    loadQuiz();
-
-    updateBirthday();
-
-    pickSong();
-
-    setInterval(
-      updateBirthday,
-      1000
-    );
-
-  }
-);
+/* ================= ARCHIVE ================= */
+
+const archiveContent = {
+
+  beginning: `
+    <p class="section-label">01 / BEGINNING</p>
+    <h2>OPEN THE DOOR</h2>
+    <p class="detail-sub">
+      BOYNEXTDOOR의 여정을 작은 타임라인으로 만나보세요.
+    </p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <strong>2023.05.30</strong>
+        <span>1st Single 『WHO!』</span>
+      </div>
+
+      <div class="timeline-item">
+        <strong>2023.09.04</strong>
+        <span>1st EP 『WHY..』</span>
+      </div>
+
+      <div class="timeline-item">
+        <strong>2024.04.15</strong>
+        <span>2nd EP 『HOW?』</span>
+      </div>
+
+      <div class="timeline-item">
+        <strong>2024.07.10</strong>
+        <span>JP 1st Single 『AND,』</span>
+      </div>
+
+      <div class="timeline-item">
+        <strong>2024.09.09</strong>
+        <span>3rd EP 『19.99』</span>
+      </div>
+
+      <div class="timeline-item">
+        <strong>2025.05.13</strong>
+        <span>4th EP 『No Genre』</span>
+      </div>
+
+      <div class="timeline-item">
+        <strong>2025.10.20</strong>
+        <span>5th EP 『The Action』</span>
+      </div>
+
+      <div class="timeline-item">
+        <strong>2026.06.08</strong>
+        <span>1st Studio Album 『HOME』</span>
+      </div>
+
+      <div class="timeline-item">
+        <strong>2026.08.18</strong>
+        <span>JP 2nd Digital Single 『Boom Boom Boom』</span>
+      </div>
+
+    </div>
+  `,
+
+
+  music: `
+    <p class="section-label">02 / MUSIC</p>
+    <h2>OUR PLAYLIST</h2>
+    <p class="detail-sub">
+      지금까지 발매된 BOYNEXTDOOR의 음악을 앨범별로 정리했어요.
+    </p>
+
+    <div class="album-list">
+
+      <details class="album">
+        <summary>WHO! — 2023.05.30</summary>
+        <div class="track-list">
+          <div>01. But I Like You</div>
+          <div>02. One and Only</div>
+          <div>03. Serenade</div>
+        </div>
+      </details>
+
+      <details class="album">
+        <summary>WHY.. — 2023.09.04</summary>
+        <div class="track-list">
+          <div>01. But I Like You</div>
+          <div>02. One and Only</div>
+          <div>03. Serenade</div>
+          <div>04. Crying</div>
+          <div>05. But Sometimes</div>
+          <div>06. ABCDLOVE</div>
+        </div>
+      </details>
+
+      <details class="album">
+        <summary>HOW? — 2024.04.15</summary>
+        <div class="track-list">
+          <div>01. OUR</div>
+          <div>02. Amnesia</div>
+          <div>03. So let's go see the stars</div>
+          <div>04. Earth, Wind & Fire</div>
+          <div>05. l i
